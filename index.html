@@ -2,6 +2,10 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="view<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>happymeal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -320,6 +324,768 @@
         <span class="acc-name">UPCOMING</span>
       </div>
       <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="work-intro">만지다가 영 아니다 싶으면 던지고 다른 걸 해서 뭐가 먼저 나올지 모릅니다. 일단은 예정 목록입니다...</div>
+
+      <div class="work-section-title">* 제작 중</div>
+      <div class="work-item-row">진도오 → 이채현</div>
+      <div class="work-item-row">진도오 → 진명오</div>
+      <div class="work-item-row">로판 시리어스 로맨스</div>
+      <div class="work-item-row">로판 피폐 로맨스</div>
+
+      <div class="work-section-title">* 제작 요청</div>
+      <div class="work-item-row">강률호 → 누나 다인 시뮬 <span style="color:var(--sub);font-size:.68rem">(하숙 컨셉 고민 중🤔)</span></div>
+      <div class="work-item-row">모르카디스 → 라스</div>
+
+      <div class="work-section-title">* 이식 요청</div>
+      <div class="work-item-row">케덕 : 인외정병동여자ver</div>
+      <div class="work-item-row">엘린 : 메이슨</div>
+      <div class="work-item-row">티팟 : 태너, 리암, 메이슨</div>
+      <div class="work-item-row">이세계트럭 : 보류</div>
+
+      <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dash);">* → 는 파생 캐릭터</div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">04</span>
+        <span class="acc-name">BEHIND</span>
+      </div>
+      <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      <a href="https://www.postype.com/@happymeal-set" target="_blank" style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;">→ postype.com/@happymeal-set</a>
+    </div>
+  </div>
+
+  <hr class="dash-solid" style="margin-top:14px" />
+
+  <div class="r-footer">
+    CONTACT<br/>
+    <a href="mailto:clearmorningpad@gmail.com">clearmorningpad@gmail.com</a><br/>
+    <br/>
+    감사합니다 &lt;3
+  </div>
+
+  <div class="r-stamp">* * * thank you * * *</div>
+
+</div>
+
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.acc-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
+port" content="width=device-width, initial-scale=1.0" />
+  <title>happymeal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #F2D8D8;
+      --paper:  #FFFDF9;
+      --ink:    #2A1A1A;
+      --sub:    #9A7A7A;
+      --accent: #C06060;
+      --dash:   #DEC0C0;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'IBM Plex Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px 60px;
+    }
+
+    .receipt {
+      background: var(--paper);
+      width: 100%;
+      max-width: 420px;
+      padding: 32px 28px 28px;
+      -webkit-mask-image:
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        top / 20px 8px no-repeat,
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        bottom / 20px 8px no-repeat,
+        linear-gradient(#000 0%, #000 100%) center / 100% calc(100% - 10px) no-repeat;
+      mask-image:
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        top / 20px 8px no-repeat,
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        bottom / 20px 8px no-repeat,
+        linear-gradient(#000 0%, #000 100%) center / 100% calc(100% - 10px) no-repeat;
+      box-shadow: 0 4px 24px rgba(100,30,30,0.10);
+    }
+
+    .r-logo {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .r-sub {
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--sub);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .r-meta {
+      font-size: 0.63rem;
+      color: var(--sub);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .dash      { border: none; border-top: 1.5px dashed var(--dash); margin: 12px 0; }
+    .dash-solid { border: none; border-top: 1.5px solid var(--dash); margin: 12px 0; }
+
+    /* ── 아코디언 ── */
+    .acc-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      text-align: left;
+      border-top: 1px dashed var(--dash);
+    }
+
+    .acc-item:first-child .acc-toggle { border-top: none; }
+
+    .acc-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+
+    .acc-num {
+      font-size: 0.65rem;
+      color: var(--sub);
+      min-width: 20px;
+      flex-shrink: 0;
+    }
+
+    .acc-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      transition: color 0.18s;
+    }
+
+    .acc-tag {
+      font-size: 0.58rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .acc-plus {
+      font-size: 1rem;
+      color: var(--dash);
+      flex-shrink: 0;
+      transition: transform 0.25s, color 0.18s;
+      line-height: 1;
+    }
+
+    .acc-item.open .acc-plus  { transform: rotate(45deg); color: var(--accent); }
+    .acc-item.open .acc-name  { color: var(--accent); }
+
+    .acc-body {
+      display: none;
+      padding: 8px 0 12px 30px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.78rem;
+      color: var(--sub);
+      line-height: 1.85;
+      border-bottom: 1px dashed var(--dash);
+    }
+
+    .acc-item.open .acc-body { display: block; animation: fi .18s ease; }
+
+    @keyframes fi {
+      from { opacity:0; transform:translateY(-3px) }
+      to   { opacity:1; transform:translateY(0) }
+    }
+
+    .acc-body b { color: var(--ink); font-weight: 700; }
+
+    /* 플랫폼 테이블 */
+    .pf-table { width: 100%; border-collapse: collapse; margin: 2px 0; }
+
+    .pf-table tr { vertical-align: top; }
+
+    .pf-cat {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--accent);
+      white-space: nowrap;
+      padding: 3px 10px 3px 0;
+      width: 52px;
+    }
+
+    .pf-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink);
+      font-weight: 600;
+      padding: 3px 0;
+    }
+
+    .pf-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--sub);
+      font-style: italic;
+      padding: 0 0 6px 0;
+    }
+
+    /* 작업 목록 */
+    .work-section { margin-top: 6px; }
+
+    .work-section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.63rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      margin-top: 10px;
+    }
+
+    .work-section-title:first-child { margin-top: 0; }
+
+    .work-item-row {
+      font-size: 0.75rem;
+      color: var(--ink);
+      padding: 2px 0 2px 8px;
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    .work-item-row::before {
+      content: '- ';
+      color: var(--sub);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .work-empty {
+      font-size: 0.72rem;
+      color: var(--dash);
+      padding: 2px 0 2px 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-style: italic;
+    }
+
+    .work-intro {
+      font-size: 0.76rem;
+      color: var(--sub);
+      line-height: 1.7;
+      margin-bottom: 10px;
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    /* 푸터 */
+    .r-footer {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--sub);
+      line-height: 2;
+      margin-top: 4px;
+    }
+
+    .r-footer a { color: var(--accent); text-decoration: none; }
+    .r-footer a:hover { text-decoration: underline; }
+
+    .r-stamp {
+      text-align: center;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--dash);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation:none!important; transition:none!important }
+    }
+  </style>
+</head>
+<body>
+<div class="receipt">
+
+  <div class="r-logo">happymeal</div>
+  <div class="r-sub">AI CHARACTER CREATOR</div>
+
+  <hr class="dash-solid" />
+
+  <div class="r-meta">
+    <span>DATE : 2026</span>
+    <span>REF# : HM-001</span>
+  </div>
+
+  <hr class="dash" />
+
+  <!-- 01 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">01</span>
+        <span class="acc-name">HAPPYMEAL</span>
+      </div>
+      <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      안녕하세요. AI 캐릭터 제작자 <b>해피밀</b>입니다.<br/>
+      기본 내캐내먹을 하고 (제 기준) 맛있으면 공개합니다. ^///^<br/><br/>
+      오랫동안 답변이 달리지 않는다면 알림이 읽음 처리되면서 제가 놓쳤거나, 댓글란이 밀려서 제가 원댓글 게시물을 찾지 못하는 경우입니다. 중요한 질문일 경우 최근 댓글로 다시 작성해주시면 찾아가겠습니다...!
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">02</span>
+        <span class="acc-name">PLATFORMS</span>
+      </div>
+      <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      <table class="pf-table">
+        <tr>
+          <td class="pf-cat">[ACTIVE]</td>
+          <td class="pf-val">CAVEDUCK · Rofan AI</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="pf-note">* 동시 업로드 목표, 체력 딸릴 시 한 곳 먼저</td>
+        </tr>
+        <tr>
+          <td class="pf-cat">[PORT]</td>
+          <td class="pf-val">elyn · teapot</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="pf-note">* 먹어보고 싶은 캐릭터 최우선 이식</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">03</span>
+        <span class="acc-name">UPCOMING</span>
+      </div>
+      <span cla<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>happymeal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #F2D8D8;
+      --paper:  #FFFDF9;
+      --ink:    #2A1A1A;
+      --sub:    #9A7A7A;
+      --accent: #C06060;
+      --dash:   #DEC0C0;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'IBM Plex Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px 60px;
+    }
+
+    .receipt {
+      background: var(--paper);
+      width: 100%;
+      max-width: 420px;
+      padding: 32px 28px 28px;
+      -webkit-mask-image:
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        top / 20px 8px no-repeat,
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        bottom / 20px 8px no-repeat,
+        linear-gradient(#000 0%, #000 100%) center / 100% calc(100% - 10px) no-repeat;
+      mask-image:
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        top / 20px 8px no-repeat,
+        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
+        bottom / 20px 8px no-repeat,
+        linear-gradient(#000 0%, #000 100%) center / 100% calc(100% - 10px) no-repeat;
+      box-shadow: 0 4px 24px rgba(100,30,30,0.10);
+    }
+
+    .r-logo {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .r-sub {
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--sub);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .r-meta {
+      font-size: 0.63rem;
+      color: var(--sub);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .dash      { border: none; border-top: 1.5px dashed var(--dash); margin: 12px 0; }
+    .dash-solid { border: none; border-top: 1.5px solid var(--dash); margin: 12px 0; }
+
+    /* ── 아코디언 ── */
+    .acc-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      text-align: left;
+      border-top: 1px dashed var(--dash);
+    }
+
+    .acc-item:first-child .acc-toggle { border-top: none; }
+
+    .acc-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+
+    .acc-num {
+      font-size: 0.65rem;
+      color: var(--sub);
+      min-width: 20px;
+      flex-shrink: 0;
+    }
+
+    .acc-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      transition: color 0.18s;
+    }
+
+    .acc-tag {
+      font-size: 0.58rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .acc-plus {
+      font-size: 1rem;
+      color: var(--dash);
+      flex-shrink: 0;
+      transition: transform 0.25s, color 0.18s;
+      line-height: 1;
+    }
+
+    .acc-item.open .acc-plus  { transform: rotate(45deg); color: var(--accent); }
+    .acc-item.open .acc-name  { color: var(--accent); }
+
+    .acc-body {
+      display: none;
+      padding: 8px 0 12px 30px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.78rem;
+      color: var(--sub);
+      line-height: 1.85;
+      border-bottom: 1px dashed var(--dash);
+    }
+
+    .acc-item.open .acc-body { display: block; animation: fi .18s ease; }
+
+    @keyframes fi {
+      from { opacity:0; transform:translateY(-3px) }
+      to   { opacity:1; transform:translateY(0) }
+    }
+
+    .acc-body b { color: var(--ink); font-weight: 700; }
+
+    /* 플랫폼 테이블 */
+    .pf-table { width: 100%; border-collapse: collapse; margin: 2px 0; }
+
+    .pf-table tr { vertical-align: top; }
+
+    .pf-cat {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--accent);
+      white-space: nowrap;
+      padding: 3px 10px 3px 0;
+      width: 52px;
+    }
+
+    .pf-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink);
+      font-weight: 600;
+      padding: 3px 0;
+    }
+
+    .pf-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--sub);
+      font-style: italic;
+      padding: 0 0 6px 0;
+    }
+
+    /* 작업 목록 */
+    .work-section { margin-top: 6px; }
+
+    .work-section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.63rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      margin-top: 10px;
+    }
+
+    .work-section-title:first-child { margin-top: 0; }
+
+    .work-item-row {
+      font-size: 0.75rem;
+      color: var(--ink);
+      padding: 2px 0 2px 8px;
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    .work-item-row::before {
+      content: '- ';
+      color: var(--sub);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .work-empty {
+      font-size: 0.72rem;
+      color: var(--dash);
+      padding: 2px 0 2px 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-style: italic;
+    }
+
+    .work-intro {
+      font-size: 0.76rem;
+      color: var(--sub);
+      line-height: 1.7;
+      margin-bottom: 10px;
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    /* 푸터 */
+    .r-footer {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--sub);
+      line-height: 2;
+      margin-top: 4px;
+    }
+
+    .r-footer a { color: var(--accent); text-decoration: none; }
+    .r-footer a:hover { text-decoration: underline; }
+
+    .r-stamp {
+      text-align: center;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--dash);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation:none!important; transition:none!important }
+    }
+  </style>
+</head>
+<body>
+<div class="receipt">
+
+  <div class="r-logo">happymeal</div>
+  <div class="r-sub">AI CHARACTER CREATOR</div>
+
+  <hr class="dash-solid" />
+
+  <div class="r-meta">
+    <span>DATE : 2026</span>
+    <span>REF# : HM-001</span>
+  </div>
+
+  <hr class="dash" />
+
+  <!-- 01 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">01</span>
+        <span class="acc-name">HAPPYMEAL</span>
+      </div>
+      <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      안녕하세요. AI 캐릭터 제작자 <b>해피밀</b>입니다.<br/>
+      기본 내캐내먹을 하고 (제 기준) 맛있으면 공개합니다. ^///^<br/><br/>
+      오랫동안 답변이 달리지 않는다면 알림이 읽음 처리되면서 제가 놓쳤거나, 댓글란이 밀려서 제가 원댓글 게시물을 찾지 못하는 경우입니다. 중요한 질문일 경우 최근 댓글로 다시 작성해주시면 찾아가겠습니다...!
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">02</span>
+        <span class="acc-name">PLATFORMS</span>
+      </div>
+      <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      <table class="pf-table">
+        <tr>
+          <td class="pf-cat">[ACTIVE]</td>
+          <td class="pf-val">CAVEDUCK · Rofan AI</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="pf-note">* 동시 업로드 목표, 체력 딸릴 시 한 곳 먼저</td>
+        </tr>
+        <tr>
+          <td class="pf-cat">[PORT]</td>
+          <td class="pf-val">elyn · teapot</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="pf-note">* 먹어보고 싶은 캐릭터 최우선 이식</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">03</span>
+        <span class="acc-name">UPCOMING</span>
+      </div>
+      <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="work-intro">만지다가 영 아니다 싶으면 던지고 다른 걸 해서 뭐가 먼저 나올지 모릅니다. 일단은 예정 목록입니다...</div>
+
+      <div class="work-section-title">* 제작 중</div>
+      <div class="work-item-row">진도오 → 이채현</div>
+      <div class="work-item-row">진도오 → 진명오</div>
+      <div class="work-item-row">로판 시리어스 로맨스</div>
+      <div class="work-item-row">로판 피폐 로맨스</div>
+
+      <div class="work-section-title">* 제작 요청</div>
+      <div class="work-item-row">강률호 → 누나 다인 시뮬 <span style="color:var(--sub);font-size:.68rem">(하숙 컨셉 고민 중🤔)</span></div>
+      <div class="work-item-row">모르카디스 → 라스</div>
+
+      <div class="work-section-title">* 이식 요청</div>
+      <div class="work-item-row">케덕 : 인외정병동여자ver</div>
+      <div class="work-item-row">엘린 : 메이슨</div>
+      <div class="work-item-row">티팟 : 태너, 리암, 메이슨</div>
+      <div class="work-item-row">이세계트럭 : 보류</div>
+
+      <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dash);">* → 는 파생 캐릭터</div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="acc-item">
+    <button class="acc-toggle" onclick="toggle(this)">
+      <div class="acc-left">
+        <span class="acc-num">04</span>
+        <span class="acc-name">BEHIND</span>
+      </div>
+      <span class="acc-plus">+</span>
+    </button>
+    <div class="acc-body">
+      <a href="https://www.postype.com/@happymeal-set" target="_blank" style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;">→ postype.com/@happymeal-set</a>
+    </div>
+  </div>
+
+  <hr class="dash-solid" style="margin-top:14px" />
+
+  <div class="r-footer">
+    CONTACT<br/>
+    <a href="mailto:clearmorningpad@gmail.com">clearmorningpad@gmail.com</a><br/>
+    <br/>
+    감사합니다 &lt;3
+  </div>
+
+  <div class="r-stamp">* * * thank you * * *</div>
+
+</div>
+
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.acc-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
+ss="acc-plus">+</span>
     </button>
     <div class="acc-body">
       <div class="work-intro">만지다가 영 아니다 싶으면 던지고 다른 걸 해서 뭐가 먼저 나올지 모릅니다. 일단은 예정 목록입니다...</div>
