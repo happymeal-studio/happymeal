@@ -1,1008 +1,575 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>HAPPYMEAL</title>
-
 <style>
-:root{
-  --bg:#ffffff;
-  --ink:#111111;
-  --muted:#8b8b86;
-  --line:#181818;
-  --accent:#ef5a3d;
-}
+  :root{
+    --bg:#f3f3f1;
+    --text:#111111;
+    --muted:#8e8b84;
+    --line:#1f1f1f;
+    --accent:#f15a38;
+  }
 
-*{box-sizing:border-box}
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;
+  }
 
-html,body{
-  margin:0;
-  min-height:100%;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",system-ui,-apple-system,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
+  body{
+    min-height:100vh;
+  }
 
-body{
-  min-height:100svh;
-}
+  a{
+    color:inherit;
+    text-decoration:none;
+  }
 
-button,a,input,textarea{
-  font:inherit;
-  color:inherit;
-}
+  .wrap{
+    width:100%;
+    max-width:1440px;
+    margin:0 auto;
+    background:var(--bg);
+  }
 
-button{
-  cursor:pointer;
-}
-
-a{
-  text-decoration:none;
-}
-
-.shell{
-  min-height:100svh;
-  display:grid;
-  grid-template-rows:auto 1fr auto;
-}
-
-/* header */
-header{
-  position:sticky;
-  top:0;
-  z-index:30;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
-  padding:
-    max(14px, env(safe-area-inset-top))
-    max(18px, env(safe-area-inset-right))
-    14px
-    max(18px, env(safe-area-inset-left));
-}
-
-.nav{
-  width:min(1280px,100%);
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:center;
-  gap:24px;
-}
-
-.brand{
-  border:0;
-  background:none;
-  padding:0;
-  text-align:left;
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:-.04em;
-}
-
-.brand small{
-  margin-left:10px;
-  color:var(--muted);
-  font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.11em;
-}
-
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-.nav-link{
-  border:0;
-  background:none;
-  padding:6px 0;
-  font:900 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.08em;
-}
-
-.nav-link:hover,
-.nav-link.active{
-  color:var(--accent);
-}
-
-.about-wrap{
-  position:relative;
-}
-
-.about-menu{
-  position:absolute;
-  top:calc(100% + 14px);
-  right:calc(-1 * max(18px, env(safe-area-inset-right)));
-  width:190px;
-  border:1px solid var(--line);
-  background:#fff;
-  display:none;
-}
-
-.about-menu.show{
-  display:block;
-}
-
-.about-menu button{
-  display:block;
-  width:100%;
-  border:0;
-  background:#fff;
-  padding:14px 16px;
-  text-align:left;
-  font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.08em;
-}
-
-.about-menu button + button{
-  border-top:1px solid var(--line);
-}
-
-.about-menu button:hover{
-  background:#111;
-  color:#fff;
-}
-
-/* content */
-main{
-  min-height:0;
-}
-
-.view{
-  display:none;
-  width:min(1280px,100%);
-  min-height:calc(100svh - 112px);
-  margin:0 auto;
-  padding:
-    clamp(34px,6vw,78px)
-    max(18px, env(safe-area-inset-right))
-    clamp(44px,7vw,90px)
-    max(18px, env(safe-area-inset-left));
-}
-
-.view.show{
-  display:block;
-}
-
-/* home */
-.home{
-  width:min(920px,100%);
-  min-height:calc(100svh - 112px);
-  margin:0 auto;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:flex-start;
-  gap:clamp(28px,4vw,46px);
-}
-
-
-
-.home-copy{
-  width:100%;
-  max-width:760px;
-}
-
-
-
-.eyebrow{
-  color:var(--muted);
-  font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.12em;
-  margin-bottom:18px;
-}
-
-.home .role{
-  margin-top:18px;
-  color:var(--muted);
-  font:800 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.09em;
-}
-
-.home .lead{
-  margin-top:24px;
-  max-width:560px;
-  font-size:clamp(18px,2vw,28px);
-  line-height:1.45;
-  letter-spacing:-.03em;
-}
-
-/* funny image slot */
-.meme-wrap{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-}
-
-.main-meme{
-  display:block;
-  width:auto;
-  max-width:min(520px,100%);
-  max-height:440px;
-  height:auto;
-  object-fit:contain;
-}
-
-/* internal pages */
-.page-head{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:clamp(10px,1vw,14px);
-  padding-bottom:24px;
-  border-bottom:1px solid var(--line);
-}
-
-.page-head .eyebrow{
-  margin:0;
-  line-height:1;
-}
-
-.page-head h2{
-  margin:0;
-  font-size:clamp(64px,10vw,130px);
-  line-height:.88;
-  letter-spacing:-.07em;
-}
-
-.copy{
-  max-width:980px;
-  padding-top:42px;
-}
-
-.copy p{
-  margin:0 0 34px;
-  font-size:clamp(17px,1.75vw,25px);
-  line-height:1.85;
-  letter-spacing:-.025em;
-}
-
-.notice{
-  margin-top:36px;
-  color:var(--muted);
-  font-size:15px;
-}
-
-.news-list{
-  margin-top:38px;
-  border-top:1px solid var(--line);
-}
-
-.news-row{
-  display:grid;
-  grid-template-columns:120px 1fr;
-  gap:18px;
-  padding:18px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.news-row time{
-  color:var(--muted);
-  font:800 9px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.08em;
-}
-
-.news-row strong{
-  font-size:16px;
-}
-
-/* footer */
-footer{
-  border-top:1px solid var(--line);
-  padding:
-    10px
-    max(18px, env(safe-area-inset-right))
-    max(10px, env(safe-area-inset-bottom))
-    max(18px, env(safe-area-inset-left));
-  text-align:center;
-  background:#fff;
-}
-
-footer a{
-  color:var(--muted);
-  font:800 8px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.08em;
-}
-
-footer a:hover{
-  color:var(--ink);
-}
-
-/* mobile */
-@media(max-width:760px){
-  header{
-    padding-top:max(12px, env(safe-area-inset-top));
-    padding-bottom:12px;
+  .topbar{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:24px 32px;
+    border-bottom:2px solid var(--line);
   }
 
   .brand{
-    font-size:16px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    min-width:0;
   }
 
-  .brand small{
-    display:none;
+  .brand-main{
+    font-size:28px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-0.02em;
   }
 
-  .nav-actions{
-    gap:14px;
+  .brand-sub{
+    font-size:12px;
+    line-height:1;
+    letter-spacing:.22em;
+    color:var(--muted);
+    font-weight:700;
+    text-transform:uppercase;
+    white-space:nowrap;
   }
 
-  .about-menu{
-    top:calc(100% + 12px);
-    right:calc(-1 * max(18px, env(safe-area-inset-right)));
-    width:min(220px,calc(100vw - 18px));
+  .nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:.14em;
+    text-transform:uppercase;
   }
 
-  .view{
-    min-height:calc(100svh - 98px);
-    padding-top:32px;
-    padding-bottom:48px;
+  .nav a.active{
+    color:var(--accent);
   }
 
-  .home .lead{
-    font-size:20px;
+  .home{
+    padding:44px 32px 56px;
   }
 
-  .copy{
-    padding-top:28px;
+  .hero{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 420px;
+    gap:44px;
+    align-items:start;
   }
 
-  .copy p{
-    font-size:17px;
-    line-height:1.8;
+  .eyebrow{
+    font-size:12px;
+    line-height:1.2;
+    letter-spacing:.24em;
+    color:var(--muted);
+    font-weight:800;
+    text-transform:uppercase;
     margin-bottom:26px;
   }
 
-  .news-row{
-    grid-template-columns:92px 1fr;
-    gap:12px;
-  }
-}
-
-.main-quote{
-  margin-top:0 !important;
-  max-width:760px !important;
-  font-size:clamp(26px,3.3vw,50px) !important;
-  line-height:1.32 !important;
-  letter-spacing:-.045em !important;
-  font-weight:700;
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:760px){
-  
+  .hero-title{
+    font-size:72px;
+    line-height:.95;
+    font-weight:900;
+    letter-spacing:-0.04em;
+    margin:0 0 34px;
+    word-break:keep-all;
   }
 
-
-.message-intro{
-  margin-top:30px;
-  margin-bottom:20px;
-}
-.message-intro p{
-  margin:0 0 7px;
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:-.03em;
-}
-.message-intro span{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.cbox-wrap{
-  width:100%;
-  max-width:980px;
-  border:1px solid var(--line);
-  background:#fff;
-  overflow:hidden;
-}
-
-.cbox-wrap iframe{
-  display:block;
-  width:100%;
-  height:620px;
-  border:0;
-  background:#fff;
-}
-
-.message-note{
-  max-width:980px;
-  margin-top:12px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.6;
-}
-
-@media(max-width:760px){
-  .message-intro{
-    margin-top:24px;
+  .hero-image{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
   }
 
-  .cbox-wrap iframe{
-    height:68svh;
-    min-height:500px;
-  }
-}
-
-
-.news-accordion{
-  margin-top:34px;
-  max-width:980px;
-  border-top:1px solid var(--line);
-}
-
-.news-item{
-  border-bottom:1px solid var(--line);
-}
-
-.news-item summary{
-  list-style:none;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  padding:20px 0;
-  cursor:pointer;
-  user-select:none;
-  font-size:16px;
-  font-weight:700;
-  letter-spacing:-.02em;
-}
-
-.news-item summary::-webkit-details-marker{
-  display:none;
-}
-
-.news-toggle{
-  font:700 18px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  transition:transform .18s ease;
-}
-
-.news-item[open] .news-toggle{
-  transform:rotate(45deg);
-}
-
-.news-body{
-  padding:0 0 22px;
-}
-
-.news-empty{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-}
-
-.news-entry{
-  display:grid;
-  grid-template-columns:120px 1fr;
-  gap:18px;
-  padding:12px 0;
-  border-top:1px solid #e2e2de;
-}
-
-.news-entry:first-child{
-  border-top:0;
-}
-
-.news-entry time{
-  color:var(--muted);
-  font:800 9px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.06em;
-}
-
-.news-entry strong{
-  font-size:14px;
-  font-weight:600;
-}
-
-@media(max-width:760px){
-  .news-item summary{
-    padding:17px 0;
-    font-size:15px;
+  .hero-image img{
+    width:100%;
+    max-width:420px;
+    height:auto;
+    display:block;
   }
 
-  .news-entry{
-    grid-template-columns:86px 1fr;
-    gap:12px;
+  .panel-area{
+    margin-top:56px;
   }
-}
 
+  .panel{
+    border:2px solid var(--line);
+    background:var(--bg);
+    margin-bottom:18px;
+  }
 
-.about-copy{
-  max-width:860px;
-  padding-top:clamp(30px,4vw,48px);
-}
+  .panel-toggle{
+    width:100%;
+    border:0;
+    background:transparent;
+    padding:22px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    text-align:left;
+    cursor:pointer;
+    font:inherit;
+  }
 
-.about-copy p{
-  max-width:42em;
-  margin:0 0 clamp(22px,3vw,34px);
-  font-size:clamp(16px,1.35vw,21px);
-  line-height:1.85;
-  letter-spacing:-.02em;
-  word-break:keep-all;
-  overflow-wrap:break-word;
-}
+  .panel-toggle-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    min-width:0;
+  }
 
+  .bullet{
+    width:18px;
+    flex:0 0 18px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+  }
 
+  .panel-title{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:.04em;
+    word-break:keep-all;
+  }
 
-@media(max-width:760px){
+  .plus{
+    font-size:26px;
+    line-height:1;
+    font-weight:400;
+  }
+
+  .panel-content{
+    display:none;
+    border-top:2px solid var(--line);
+    padding:24px;
+  }
+
+  .panel.open .panel-content{
+    display:block;
+  }
+
+  .panel.open .plus{
+    transform:translateY(-1px);
+  }
+
   .about-copy{
-    padding-top:28px;
+    font-size:18px;
+    line-height:1.9;
+    word-break:keep-all;
   }
 
   .about-copy p{
-    font-size:16px;
+    margin:0 0 22px;
+  }
+
+  .about-meta{
+    margin-top:28px;
+    display:grid;
+    gap:14px;
+  }
+
+  .about-meta-row{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    flex-wrap:wrap;
+    font-size:18px;
+    line-height:1.7;
+    word-break:keep-all;
+  }
+
+  .about-meta-label,
+  .about-meta-value{
+    font-size:18px;
+    line-height:1.7;
+  }
+
+  .about-meta-label{
+    color:var(--muted);
+    font-weight:700;
+  }
+
+  .news-list{
+    display:grid;
+    gap:18px;
+  }
+
+  .news-item{
+    padding:18px 0 0;
+  }
+
+  .news-item:first-child{
+    padding-top:0;
+  }
+
+  .news-item-title{
+    font-size:18px;
+    font-weight:900;
+    margin-bottom:10px;
+    letter-spacing:.02em;
+  }
+
+  .news-item-body{
+    font-size:17px;
     line-height:1.8;
-    margin-bottom:24px;
+    color:#202020;
+    word-break:keep-all;
   }
 
-  
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:760px){
-  
-}
-
-
-@media(max-width:760px){
-  .meme-wrap{
-    justify-self:start;
-    max-width:min(100%,520px);
-  }
-
-  .main-meme{
+  .message-box{
     width:100%;
-    max-height:none;
-  }
-}
-
-
-
-
-
-.status-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-  margin-top:34px;
-  align-items:start;
-}
-
-.status-card{
-  border:1px solid var(--line);
-  background:#fff;
-}
-
-.status-card summary{
-  list-style:none;
-}
-
-.status-card summary::-webkit-details-marker{
-  display:none;
-}
-
-.status-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  padding:16px 18px;
-  cursor:pointer;
-  user-select:none;
-}
-
-.status-title{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font:900 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.06em;
-}
-
-.status-dot{
-  width:8px;
-  height:8px;
-  border:1px solid var(--line);
-  border-radius:50%;
-  background:#fff;
-  flex:0 0 auto;
-}
-
-.status-toggle{
-  font:700 18px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  transition:transform .18s ease;
-}
-
-.status-card[open] .status-head{
-  border-bottom:1px solid var(--line);
-}
-
-.status-card[open] .status-toggle{
-  transform:rotate(45deg);
-}
-
-.status-list{
-  min-height:160px;
-  padding:18px;
-}
-
-.status-empty{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-}
-
-@media(max-width:760px){
-  .status-grid{
-    grid-template-columns:1fr;
+    min-height:420px;
+    border:2px solid var(--line);
+    background:#fff;
+    overflow:hidden;
   }
 
-  .status-head{
-    padding:15px 16px;
-  }
-
-  .status-list{
-    min-height:120px;
-    padding:16px;
-  }
-}
-
-
-@media(max-width:760px){
-  .home{
+  .message-box iframe{
     width:100%;
-    margin:0;
-    gap:26px;
+    height:420px;
+    border:0;
+    display:block;
   }
 
-  .meme-wrap{
-    justify-content:center;
+  .message-note{
+    margin-top:14px;
+    font-size:16px;
+    line-height:1.7;
+    color:var(--muted);
+    word-break:keep-all;
   }
 
-  .main-meme{
-    max-width:min(92vw,460px);
-    max-height:none;
-  }
-}
-
-
-.platform-info{
-  margin-top:clamp(38px,5vw,58px);
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  max-width:760px;
-}
-
-.platform-line{
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.platform-label,
-.platform-sep,
-.platform-value{
-  font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",system-ui,-apple-system,sans-serif;
-  font-size:15px;
-  font-weight:600;
-  line-height:1.4;
-  letter-spacing:-.02em;
-}
-
-.platform-label,
-.platform-sep{
-  color:var(--muted);
-}
-
-.platform-value{
-  color:var(--ink);
-}
-
-/* gray labels and black text share the same baseline rhythm */
-.page-head .eyebrow,
-.message-intro span,
-.platform-label,
-.platform-sep{
-  transform:none;
-  vertical-align:baseline;
-}
-
-@media(max-width:760px){
-  .platform-info{
-    gap:8px;
+  .footer{
+    border-top:2px solid var(--line);
+    padding:28px 32px 34px;
+    text-align:center;
   }
 
-  .platform-line{
-    gap:8px;
+  .footer-mail{
+    font-size:16px;
+    letter-spacing:.18em;
+    color:var(--muted);
+    font-weight:800;
+    text-transform:uppercase;
+    word-break:break-all;
   }
 
-  .platform-label,
-  .platform-sep,
-  .platform-value{
-    font-size:14px;
-  }
-}
+  @media (max-width: 980px){
+    .hero{
+      grid-template-columns:1fr;
+      gap:26px;
+    }
 
+    .hero-image{
+      justify-content:flex-start;
+    }
 
-.page-head,
-.copy,
-.status-grid,
-.message-intro,
-.cbox-wrap,
-.message-note{
-  width:100%;
-  max-width:980px;
-}
+    .hero-image img{
+      max-width:320px;
+    }
 
-.page-head{
-  margin-left:0;
-  margin-right:0;
-}
-
-
-@media(max-width:760px){
-  .page-head{
-    gap:9px;
-    padding-bottom:20px;
+    .hero-title{
+      font-size:56px;
+    }
   }
 
-  .page-head h2{
-    line-height:.9;
+  @media (max-width: 640px){
+    .topbar{
+      padding:18px 18px;
+      gap:16px;
+      align-items:flex-start;
+    }
+
+    .brand{
+      gap:10px;
+      flex-direction:column;
+      align-items:flex-start;
+    }
+
+    .brand-main{
+      font-size:22px;
+    }
+
+    .brand-sub{
+      font-size:10px;
+      letter-spacing:.18em;
+    }
+
+    .nav{
+      gap:16px;
+      font-size:12px;
+    }
+
+    .home{
+      padding:28px 18px 40px;
+    }
+
+    .eyebrow{
+      font-size:11px;
+      margin-bottom:18px;
+    }
+
+    .hero-title{
+      font-size:34px;
+      line-height:1.06;
+      margin-bottom:18px;
+    }
+
+    .hero-image img{
+      max-width:260px;
+    }
+
+    .panel-area{
+      margin-top:34px;
+    }
+
+    .panel-toggle{
+      padding:18px 16px;
+    }
+
+    .panel-title{
+      font-size:16px;
+    }
+
+    .panel-content{
+      padding:18px 16px;
+    }
+
+    .about-copy{
+      font-size:15px;
+      line-height:1.85;
+    }
+
+    .about-meta-row,
+    .about-meta-label,
+    .about-meta-value,
+    .news-item-body{
+      font-size:15px;
+      line-height:1.8;
+    }
+
+    .news-item-title{
+      font-size:15px;
+    }
+
+    .message-box{
+      min-height:360px;
+    }
+
+    .message-box iframe{
+      height:360px;
+    }
+
+    .message-note{
+      font-size:14px;
+    }
+
+    .footer{
+      padding:22px 18px 28px;
+    }
+
+    .footer-mail{
+      font-size:12px;
+      letter-spacing:.14em;
+    }
   }
-}
-
-
-.status-entry{
-  padding:7px 0;
-  font-size:14px;
-  line-height:1.6;
-}
-
-.status-entry + .status-entry{
-  border-top:1px solid #e5e5e1;
-}
-
-.status-entry strong{
-  font-weight:700;
-}
-
-
-.status-sub{
-  color:var(--muted);
-  font-size:12px;
-}
 </style>
 </head>
-
 <body>
-<div class="shell">
-
-<header>
-  <div class="nav">
-    <button class="brand" id="brandBtn">
-      HAPPYMEAL
-      <small>AI CHARACTER CREATOR</small>
-    </button>
-
-    <div class="nav-actions">
-      <button class="nav-link active" id="homeBtn">HOME</button>
-
-      <div class="about-wrap">
-        <button class="nav-link" id="aboutToggle">ABOUT +</button>
-
-        <div class="about-menu" id="aboutMenu">
-          <button data-view="about">ABOUT</button>
-          <button data-view="news">NEWS</button>
-          <button data-view="behind">BEHIND</button>
-          <button data-view="message">MESSAGE</button>
-        </div>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-main">HAPPYMEAL</div>
+        <div class="brand-sub">AI CHARACTER CREATOR</div>
       </div>
-    </div>
+
+      <nav class="nav">
+        <a href="#home" class="active">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#message">+</a>
+      </nav>
+    </header>
+
+    <main class="home" id="home">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">PERSONAL ARCHIVE / AI CHARACTER CREATOR</div>
+          <h1 class="hero-title">그때그때 좋아하는 걸 만듭니다.</h1>
+        </div>
+
+        <div class="hero-image">
+          <img src="https://i.imgur.com/2xEbbVn.jpeg" alt="HAPPYMEAL main image">
+        </div>
+      </section>
+
+      <section class="panel-area">
+        <article class="panel open" id="about">
+          <button class="panel-toggle" type="button" aria-expanded="true">
+            <div class="panel-toggle-left">
+              <span class="bullet">○</span>
+              <span class="panel-title">ABOUT</span>
+            </div>
+            <span class="plus">−</span>
+          </button>
+          <div class="panel-content">
+            <div class="about-copy">
+              <p>안녕하세요. AI 채팅 캐릭터를 만드는 제작자 해피밀입니다.</p>
+              <p>로맨스, 순애, 코미디, 판타지, 음침, 미스터리, 피폐 등 장르는 크게 가리지 않습니다. 생각나는 것을 제작하고 제 기준 맛있으면 공개로 내놓습니다.</p>
+              <p>현재는 ‘케이브덕 공식 크리에이터’ 로서 오리지널 캐릭터를 주력으로 공개하고 있습니다. 이전 캐릭터들은 타플랫폼에 이식 작업을 하고 있으나 제가 속도가 많이 느리고 청기백기 수준으로 왔다갔다 하는지라... 그냥 캐릭터가 갑툭튀 할 수 있습니다.</p>
+              <p>오랫동안 답변이 달리지 않는다면 알림이 읽음 처리되면서 제가 놓쳤거나, 원댓글 게시물을 찾지 못하는 경우입니다. 중요한 질문일 경우 새댓글을 재작성해주시면 찾아가겠습니다.</p>
+              <p>감사합니다.</p>
+            </div>
+
+            <div class="about-meta">
+              <div class="about-meta-row">
+                <span class="about-meta-label">메인 플랫폼</span>
+                <span>|</span>
+                <span class="about-meta-value">케이브덕</span>
+              </div>
+              <div class="about-meta-row">
+                <span class="about-meta-label">서브 플랫폼</span>
+                <span>|</span>
+                <span class="about-meta-value">티팟, 엘린, 로판AI</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" id="news">
+          <button class="panel-toggle" type="button" aria-expanded="false">
+            <div class="panel-toggle-left">
+              <span class="bullet">○</span>
+              <span class="panel-title">NEWS</span>
+            </div>
+            <span class="plus">+</span>
+          </button>
+          <div class="panel-content">
+            <div class="news-list">
+              <div class="news-item">
+                <div class="news-item-title">제작 중</div>
+                <div class="news-item-body">케이브덕 오리지널: 이채현<br>이식 요청: 티팟에 천시안</div>
+              </div>
+
+              <div class="news-item">
+                <div class="news-item-title">제작 예정</div>
+                <div class="news-item-body">케이브덕 오리지널: 재스퍼 (인외정병동 단독)<br>케이브덕 오리지널: 라스 (모르카디스 파생)<br>케이브덕 오리지널: SCU 신규 캐릭터</div>
+              </div>
+
+              <div class="news-item">
+                <div class="news-item-title">이식 요청</div>
+                <div class="news-item-body">엘린: 권태희<br>티팟: 진명오, 린바오, 모르카디스, 천시안</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" id="behind">
+          <button class="panel-toggle" type="button" aria-expanded="false">
+            <div class="panel-toggle-left">
+              <span class="bullet">○</span>
+              <span class="panel-title">BEHIND</span>
+            </div>
+            <span class="plus">+</span>
+          </button>
+          <div class="panel-content">
+            <div class="about-copy">
+              <p>편하게 남겨 주세요.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" id="message">
+          <button class="panel-toggle" type="button" aria-expanded="false">
+            <div class="panel-toggle-left">
+              <span class="bullet">○</span>
+              <span class="panel-title">MESSAGE</span>
+            </div>
+            <span class="plus">+</span>
+          </button>
+          <div class="panel-content">
+            <div class="message-box">
+              <iframe
+                src="https://www3.cbox.ws/box/?boxid=3560877&boxtag=ONZqFL"
+                title="HAPPYMEAL guestbook"
+                loading="lazy"
+                referrerpolicy="no-referrer">
+              </iframe>
+            </div>
+            <div class="message-note">익명 소통창입니다.</div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-mail">CLEARMORNINGPAD@GMAIL.COM</div>
+    </footer>
   </div>
-</header>
 
-<main>
+  <script>
+    const panels = document.querySelectorAll('.panel');
 
-  <section class="view show" id="view-home">
-    <div class="home">
-      <div class="meme-wrap">
-        <img
-          class="main-meme"
-          src="https://i.imgur.com/2xEbbVn.jpeg"
-          alt="HAPPYMEAL main image">
-      </div>
+    panels.forEach(panel => {
+      const button = panel.querySelector('.panel-toggle');
+      const plus = panel.querySelector('.plus');
 
-      <div class="home-copy">
-        <div class="eyebrow">PERSONAL ARCHIVE / AI CHARACTER CREATOR</div>
-        <div class="lead main-quote">그때그때 좋아하는 걸 만듭니다.</div>
-      </div>
-    </div>
-  </section>
+      button.addEventListener('click', () => {
+        const isOpen = panel.classList.contains('open');
 
-  <section class="view" id="view-about">
-    <div class="page-head">
-      <div class="eyebrow">CREATOR / PROFILE</div>
-      <h2>ABOUT</h2>
-    </div>
+        panels.forEach(p => {
+          p.classList.remove('open');
+          p.querySelector('.panel-toggle').setAttribute('aria-expanded', 'false');
+          p.querySelector('.plus').textContent = '+';
+        });
 
-    <div class="copy about-copy">
-      <p>안녕하세요. AI 채팅 캐릭터를 만드는 제작자 해피밀입니다.</p>
-
-      <p>로맨스, 순애, 코미디, 판타지, 음침, 미스터리, 피폐 등 장르는 크게 가리지 않습니다. 생각나는 것을 제작하고 제 기준 맛있으면 공개로 내놓습니다.</p>
-
-      <p>현재는 ‘케이브덕 공식 크리에이터’ 로서 오리지널 캐릭터를 주력으로 공개하고 있습니다. 이전 캐릭터들은 타플랫폼에 이식 작업을 하고 있으나 제가 속도가 많이 느리고 청기백기 수준으로 왔다갔다 하는지라... 그냥 캐릭터가 갑툭튀 할 수 있습니다.</p>
-
-      <p>오랫동안 답변이 달리지 않는다면 알림이 읽음 처리되면서 제가 놓쳤거나, 원댓글 게시물을 찾지 못하는 경우입니다. 중요한 질문일 경우 새댓글을 재작성해주시면 찾아가겠습니다.</p>
-
-      <p>감사합니다.</p>
-
-      <div class="platform-info">
-        <div class="platform-line">
-          <span class="platform-label">메인 플랫폼</span>
-          <span class="platform-sep">|</span>
-          <span class="platform-value">케이브덕</span>
-        </div>
-        <div class="platform-line">
-          <span class="platform-label">서브 플랫폼</span>
-          <span class="platform-sep">|</span>
-          <span class="platform-value">티팟, 엘린, 로판AI</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="view" id="view-behind">
-    <div class="page-head">
-      <div class="eyebrow">MAKING / NOTES</div>
-      <h2>BEHIND</h2>
-    </div>
-
-    <div class="copy">
-      <p>리뉴얼 중입니다.</p>
-    </div>
-  </section>
-
-  <section class="view" id="view-news">
-    <div class="page-head">
-      <div class="eyebrow">JOURNAL / STATUS</div>
-      <h2>NEWS</h2>
-    </div>
-
-    <div class="status-grid">
-      <details class="status-card">
-        <summary class="status-head">
-          <span class="status-title"><span class="status-dot"></span>제작 중</span>
-          <span class="status-toggle">+</span>
-        </summary>
-        <div class="status-list">
-          <div class="status-entry"><strong>케이브덕 오리지널:</strong> 이채현</div>
-        </div>
-      </details>
-
-      <details class="status-card">
-        <summary class="status-head">
-          <span class="status-title"><span class="status-dot"></span>제작 예정</span>
-          <span class="status-toggle">+</span>
-        </summary>
-        <div class="status-list">
-          <div class="status-entry"><strong>케이브덕 오리지널:</strong> 재스퍼 <span class="status-sub">(인외정병동 단독)</span></div>
-          <div class="status-entry"><strong>케이브덕 오리지널:</strong> 라스 <span class="status-sub">(모르카디스 파생)</span></div>
-          <div class="status-entry"><strong>케이브덕 오리지널:</strong> SCU 신규 캐릭터</div>
-        </div>
-      </details>
-
-      <details class="status-card">
-        <summary class="status-head">
-          <span class="status-title"><span class="status-dot"></span>이식 요청</span>
-          <span class="status-toggle">+</span>
-        </summary>
-        <div class="status-list">
-          <div class="status-entry"><strong>엘린:</strong> 권태희</div>
-          <div class="status-entry"><strong>티팟:</strong> 진명오, 린바오, 모르카디스, 천시안</div>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <section class="view" id="view-message">
-    <div class="page-head">
-      <div class="eyebrow">OPEN TALK / GUESTBOOK</div>
-      <h2>MESSAGE</h2>
-    </div>
-
-    <div class="message-intro">
-      <p>편하게 남겨 주세요</p>
-      <span>캐릭터 이야기 · 잡담 · 질문</span>
-    </div>
-
-    <div class="cbox-wrap">
-      <iframe
-        src="https://www3.cbox.ws/box/?boxid=3560877&boxtag=ONZqFL"
-        title="HAPPYMEAL Cbox"
-        width="100%"
-        height="620"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        scrolling="auto"
-        allowtransparency="yes">
-      </iframe>
-    </div>
-
-    <div class="message-note">
-      공개 소통창입니다.
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <a href="mailto:clearmorningpad@gmail.com">CLEARMORNINGPAD@GMAIL.COM</a>
-</footer>
-
-</div>
-
-<script>
-const views = ['home','about','behind','news','message'];
-const aboutToggle = document.getElementById('aboutToggle');
-const aboutMenu = document.getElementById('aboutMenu');
-const homeBtn = document.getElementById('homeBtn');
-const brandBtn = document.getElementById('brandBtn');
-
-function showView(name){
-  views.forEach(v=>{
-    document.getElementById('view-'+v).classList.toggle('show',v===name);
-  });
-
-  homeBtn.classList.toggle('active',name==='home');
-  aboutToggle.classList.toggle('active',name!=='home');
-  aboutMenu.classList.remove('show');
-  aboutToggle.textContent='ABOUT +';
-
-  window.scrollTo({top:0,behavior:'instant'});
-}
-
-aboutToggle.addEventListener('click',()=>{
-  const open=aboutMenu.classList.toggle('show');
-  aboutToggle.textContent=open?'ABOUT −':'ABOUT +';
-});
-
-document.querySelectorAll('[data-view]').forEach(btn=>{
-  btn.addEventListener('click',()=>showView(btn.dataset.view));
-});
-
-homeBtn.addEventListener('click',()=>showView('home'));
-brandBtn.addEventListener('click',()=>showView('home'));
-
-document.addEventListener('click',(e)=>{
-  if(!e.target.closest('.about-wrap')){
-    aboutMenu.classList.remove('show');
-    aboutToggle.textContent='ABOUT +';
-  }
-});
-</script>
+        if (!isOpen) {
+          panel.classList.add('open');
+          button.setAttribute('aria-expanded', 'true');
+          plus.textContent = '−';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
