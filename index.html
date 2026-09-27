@@ -222,26 +222,31 @@ main{
 .main-meme{
   display:block;
   width:auto;
-  max-width:min(620px,100%);
-  max-height:520px;
+  max-width:min(520px,100%);
+  max-height:440px;
   height:auto;
   object-fit:contain;
 }
 
 /* internal pages */
 .page-head{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:clamp(10px,1vw,14px);
   padding-bottom:24px;
   border-bottom:1px solid var(--line);
 }
 
 .page-head .eyebrow{
-  margin-bottom:14px;
+  margin:0;
+  line-height:1;
 }
 
 .page-head h2{
   margin:0;
   font-size:clamp(64px,10vw,130px);
-  line-height:.82;
+  line-height:.88;
   letter-spacing:-.07em;
 }
 
@@ -675,7 +680,7 @@ footer a:hover{
   }
 
   .main-meme{
-    max-width:100%;
+    max-width:min(92vw,460px);
     max-height:none;
   }
 }
@@ -756,6 +761,18 @@ footer a:hover{
   margin-right:0;
 }
 
+
+@media(max-width:760px){
+  .page-head{
+    gap:9px;
+    padding-bottom:20px;
+  }
+
+  .page-head h2{
+    line-height:.9;
+  }
+}
+
 </style>
 </head>
 
@@ -793,7 +810,7 @@ footer a:hover{
       <div class="meme-wrap">
         <img
           class="main-meme"
-          src="https://i.imgur.com/qeBpxfR.jpeg"
+          src="https://i.imgur.com/2xEbbVn.jpeg"
           alt="HAPPYMEAL main image">
       </div>
 
@@ -815,7 +832,7 @@ footer a:hover{
 
       <p>로맨스, 순애, 코미디, 판타지, 음침, 미스터리, 피폐 등 장르는 크게 가리지 않습니다. 생각나는 것을 제작하고 제 기준 맛있으면 공개로 내놓습니다.</p>
 
-      <p>현재는 ‘케이브덕 공식 크리에이터’ 로서 오리지널 캐릭터를 주력으로 공개하고 있습니다. 이전 캐릭터들은 타플랫폼에 있으나 제가 이식 작업에 많은 시간을 들이는 지라… 그냥 갑툭튀 할 수 있습니다.</p>
+      <p>현재는 ‘케이브덕 공식 크리에이터’ 로서 오리지널 캐릭터를 주력으로 공개하고 있습니다. 이전 캐릭터들은 타플랫폼에 이식 작업을 하고 있으나 제가 속도가 많이 느리고 청기백기 수준으로 왔다갔다 하는지라... 그냥 캐릭터가 갑툭튀 할 수 있습니다.</p>
 
       <p>오랫동안 답변이 달리지 않는다면 알림이 읽음 처리되면서 제가 놓쳤거나, 원댓글 게시물을 찾지 못하는 경우입니다. 중요한 질문일 경우 새댓글을 재작성해주시면 찾아가겠습니다.</p>
 
@@ -904,7 +921,7 @@ footer a:hover{
     </div>
 
     <div class="message-intro">
-      <p>편하게 놀다 가세요.</p>
+      <p>편하게 남겨 주세요</p>
       <span>캐릭터 이야기 · 잡담 · 질문</span>
     </div>
 
