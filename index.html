@@ -1,356 +1,774 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>happymeal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-  <style>
-    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>HAPPYMEAL</title>
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#111111;
+  --muted:#8b8b86;
+  --line:#181818;
+  --accent:#ef5a3d;
+}
 
-    :root {
-      --bg:     #F2D8D8;
-      --paper:  #FFFDF9;
-      --ink:    #2A1A1A;
-      --sub:    #9A7A7A;
-      --accent: #C06060;
-      --dash:   #DEC0C0;
-    }
+*{box-sizing:border-box}
 
-    body {
-      background: var(--bg);
-      font-family: 'IBM Plex Mono', monospace;
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 40px 16px 60px;
-    }
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
 
-    .receipt {
-      background: var(--paper);
-      width: 100%;
-      max-width: 420px;
-      padding: 32px 28px 28px;
-      -webkit-mask-image:
-        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
-        top / 20px 8px no-repeat,
-        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
-        bottom / 20px 8px no-repeat,
-        linear-gradient(#000 0%, #000 100%) center / 100% calc(100% - 10px) no-repeat;
-      mask-image:
-        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
-        top / 20px 8px no-repeat,
-        repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #000 6px, #000 14px)
-        bottom / 20px 8px no-repeat,
-        linear-gradient(#000 0%, #000 100%) center / 100% calc(100% - 10px) no-repeat;
-      box-shadow: 0 4px 24px rgba(100,30,30,0.10);
-    }
+body{
+  min-height:100svh;
+}
 
-    .r-logo {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-    }
+button,a,input,textarea{
+  font:inherit;
+  color:inherit;
+}
 
-    .r-sub {
-      text-align: center;
-      font-size: 0.65rem;
-      color: var(--sub);
-      letter-spacing: 0.06em;
-      margin-bottom: 16px;
-    }
+button{
+  cursor:pointer;
+}
 
-    .r-meta {
-      font-size: 0.63rem;
-      color: var(--sub);
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 4px;
-    }
+a{
+  text-decoration:none;
+}
 
-    .dash      { border: none; border-top: 1.5px dashed var(--dash); margin: 12px 0; }
-    .dash-solid { border: none; border-top: 1.5px solid var(--dash); margin: 12px 0; }
+.shell{
+  min-height:100svh;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
 
-    .acc-toggle {
-      width: 100%;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      text-align: left;
-      border-top: 1px dashed var(--dash);
-    }
+/* header */
+header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  padding:
+    max(14px, env(safe-area-inset-top))
+    max(18px, env(safe-area-inset-right))
+    14px
+    max(18px, env(safe-area-inset-left));
+}
 
-    .acc-item:first-child .acc-toggle { border-top: none; }
+.nav{
+  width:min(1280px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:24px;
+}
 
-    .acc-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+.brand{
+  border:0;
+  background:none;
+  padding:0;
+  text-align:left;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
 
-    .acc-num {
-      font-size: 0.65rem;
-      color: var(--sub);
-      min-width: 20px;
-      flex-shrink: 0;
-    }
+.brand small{
+  margin-left:10px;
+  color:var(--muted);
+  font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.11em;
+}
 
-    .acc-name {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-      transition: color 0.18s;
-    }
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
 
-    .acc-plus {
-      font-size: 1rem;
-      color: var(--dash);
-      flex-shrink: 0;
-      transition: transform 0.25s, color 0.18s;
-      line-height: 1;
-    }
+.nav-link{
+  border:0;
+  background:none;
+  padding:6px 0;
+  font:900 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.08em;
+}
 
-    .acc-item.open .acc-plus  { transform: rotate(45deg); color: var(--accent); }
-    .acc-item.open .acc-name  { color: var(--accent); }
+.nav-link:hover,
+.nav-link.active{
+  color:var(--accent);
+}
 
-    .acc-body {
-      display: none;
-      padding: 8px 0 12px 30px;
-      font-family: 'Pretendard', sans-serif;
-      font-size: 0.78rem;
-      color: var(--sub);
-      line-height: 1.85;
-      border-bottom: 1px dashed var(--dash);
-    }
+.about-wrap{
+  position:relative;
+}
 
-    .acc-item.open .acc-body { display: block; animation: fi .18s ease; }
+.about-menu{
+  position:absolute;
+  top:calc(100% + 14px);
+  right:0;
+  width:190px;
+  border:1px solid var(--line);
+  background:#fff;
+  display:none;
+}
 
-    @keyframes fi {
-      from { opacity:0; transform:translateY(-3px) }
-      to   { opacity:1; transform:translateY(0) }
-    }
+.about-menu.show{
+  display:block;
+}
 
-    .acc-body b { color: var(--ink); font-weight: 700; }
+.about-menu button{
+  display:block;
+  width:100%;
+  border:0;
+  background:#fff;
+  padding:14px 16px;
+  text-align:left;
+  font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.08em;
+}
 
-    .pf-table { width: 100%; border-collapse: collapse; margin: 2px 0; }
-    .pf-table tr { vertical-align: top; }
+.about-menu button + button{
+  border-top:1px solid var(--line);
+}
 
-    .pf-cat {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--accent);
-      white-space: nowrap;
-      padding: 3px 10px 3px 0;
-      width: 52px;
-    }
+.about-menu button:hover{
+  background:#111;
+  color:#fff;
+}
 
-    .pf-val {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--ink);
-      font-weight: 600;
-      padding: 3px 0;
-    }
+/* content */
+main{
+  min-height:0;
+}
 
-    .pf-note {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--sub);
-      font-style: italic;
-      padding: 0 0 6px 0;
-    }
+.view{
+  display:none;
+  width:min(1280px,100%);
+  min-height:calc(100svh - 112px);
+  margin:0 auto;
+  padding:
+    clamp(34px,6vw,78px)
+    max(18px, env(safe-area-inset-right))
+    clamp(44px,7vw,90px)
+    max(18px, env(safe-area-inset-left));
+}
 
-    .work-section { margin-top: 6px; }
+.view.show{
+  display:block;
+}
 
-    .work-section-title {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.63rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-      margin-top: 10px;
-    }
+/* home */
+.home{
+  min-height:calc(100svh - 112px);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,560px);
+  gap:clamp(32px,6vw,90px);
+  align-items:end;
+}
 
-    .work-section-title:first-child { margin-top: 0; }
+.home-copy{
+  align-self:end;
+}
 
-    .work-item-row {
-      font-size: 0.75rem;
-      color: var(--ink);
-      padding: 2px 0 2px 8px;
-      font-family: 'Pretendard', sans-serif;
-    }
+.eyebrow{
+  color:var(--muted);
+  font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.12em;
+  margin-bottom:18px;
+}
 
-    .work-item-row::before {
-      content: '- ';
-      color: var(--sub);
-      font-family: 'IBM Plex Mono', monospace;
-    }
+.home h1{
+  margin:0;
+  font-size:clamp(70px,10vw,150px);
+  line-height:.82;
+  letter-spacing:-.075em;
+}
 
-    .work-intro {
-      font-size: 0.76rem;
-      color: var(--sub);
-      line-height: 1.7;
-      margin-bottom: 10px;
-      font-family: 'Pretendard', sans-serif;
-    }
+.home .role{
+  margin-top:18px;
+  color:var(--muted);
+  font:800 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.09em;
+}
 
-    .r-footer {
-      text-align: center;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--sub);
-      line-height: 2;
-      margin-top: 4px;
-    }
+.home .lead{
+  margin-top:24px;
+  max-width:560px;
+  font-size:clamp(18px,2vw,28px);
+  line-height:1.45;
+  letter-spacing:-.03em;
+}
 
-    .r-footer a { color: var(--accent); text-decoration: none; }
-    .r-footer a:hover { text-decoration: underline; }
+/* funny image slot */
+.meme-wrap{
+  align-self:center;
+}
 
-    .r-stamp {
-      text-align: center;
-      font-size: 0.58rem;
-      letter-spacing: 0.15em;
-      color: var(--dash);
-      margin-top: 6px;
-      text-transform: uppercase;
-    }
+.meme{
+  width:100%;
+  aspect-ratio:4/3;
+  border:1px solid var(--line);
+  background:#f5f5f3;
+  overflow:hidden;
+  position:relative;
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      * { animation:none!important; transition:none!important }
-    }
-  </style>
+.meme img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  background:#fff;
+}
+
+.meme-placeholder{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--muted);
+  font:800 10px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.08em;
+}
+
+/* internal pages */
+.page-head{
+  padding-bottom:24px;
+  border-bottom:1px solid var(--line);
+}
+
+.page-head .eyebrow{
+  margin-bottom:14px;
+}
+
+.page-head h2{
+  margin:0;
+  font-size:clamp(64px,10vw,130px);
+  line-height:.82;
+  letter-spacing:-.07em;
+}
+
+.copy{
+  max-width:980px;
+  padding-top:42px;
+}
+
+.copy p{
+  margin:0 0 34px;
+  font-size:clamp(17px,1.75vw,25px);
+  line-height:1.85;
+  letter-spacing:-.025em;
+}
+
+.notice{
+  margin-top:36px;
+  color:var(--muted);
+  font-size:15px;
+}
+
+.news-list{
+  margin-top:38px;
+  border-top:1px solid var(--line);
+}
+
+.news-row{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:18px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.news-row time{
+  color:var(--muted);
+  font:800 9px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.08em;
+}
+
+.news-row strong{
+  font-size:16px;
+}
+
+/* footer */
+footer{
+  border-top:1px solid var(--line);
+  padding:
+    10px
+    max(18px, env(safe-area-inset-right))
+    max(10px, env(safe-area-inset-bottom))
+    max(18px, env(safe-area-inset-left));
+  text-align:center;
+  background:#fff;
+}
+
+footer a{
+  color:var(--muted);
+  font:800 8px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.08em;
+}
+
+footer a:hover{
+  color:var(--ink);
+}
+
+/* mobile */
+@media(max-width:760px){
+  header{
+    padding-top:max(12px, env(safe-area-inset-top));
+    padding-bottom:12px;
+  }
+
+  .brand{
+    font-size:16px;
+  }
+
+  .brand small{
+    display:none;
+  }
+
+  .nav-actions{
+    gap:14px;
+  }
+
+  .about-menu{
+    top:calc(100% + 12px);
+    right:0;
+    width:min(220px,calc(100vw - 36px));
+  }
+
+  .view{
+    min-height:calc(100svh - 98px);
+    padding-top:32px;
+    padding-bottom:48px;
+  }
+
+  .home{
+    min-height:auto;
+    grid-template-columns:1fr;
+    gap:32px;
+    align-items:start;
+  }
+
+  .home-copy{
+    order:1;
+  }
+
+  .meme-wrap{
+    order:2;
+  }
+
+  .home h1{
+    font-size:clamp(64px,19vw,98px);
+  }
+
+  .home .lead{
+    font-size:20px;
+  }
+
+  .meme{
+    aspect-ratio:1/1;
+  }
+
+  .copy{
+    padding-top:28px;
+  }
+
+  .copy p{
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:26px;
+  }
+
+  .news-row{
+    grid-template-columns:92px 1fr;
+    gap:12px;
+  }
+}
+
+.main-quote{
+  margin-top:0 !important;
+  max-width:760px !important;
+  font-size:clamp(26px,3.3vw,50px) !important;
+  line-height:1.32 !important;
+  letter-spacing:-.045em !important;
+  font-weight:700;
+}
+
+
+
+.platform-info{
+  margin-top:54px;
+  max-width:760px;
+  border-top:1px solid var(--line);
+}
+.platform-row{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:24px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.platform-row span{
+  color:var(--muted);
+  font:800 9px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.07em;
+}
+.platform-row strong{
+  font-size:14px;
+  font-weight:600;
+}
+
+.status-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:34px;
+}
+.status-card{
+  border:1px solid var(--line);
+  background:#fff;
+  min-height:210px;
+}
+.status-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:13px 14px;
+  border-bottom:1px solid var(--line);
+}
+.status-head h3{
+  margin:0;
+  font:900 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.06em;
+}
+.status-dot{
+  width:8px;
+  height:8px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:#fff;
+}
+.status-list{
+  padding:14px;
+}
+.status-empty{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+.status-item{
+  padding:10px 0;
+  border-bottom:1px solid #ddd;
+}
+.status-item:last-child{
+  border-bottom:0;
+}
+.status-item strong{
+  display:block;
+  font-size:14px;
+  margin-bottom:4px;
+}
+.status-item span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+@media(max-width:760px){
+  .platform-row{
+    grid-template-columns:100px 1fr;
+    gap:14px;
+  }
+  .status-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+.message-intro{
+  margin-top:30px;
+  margin-bottom:20px;
+}
+.message-intro p{
+  margin:0 0 7px;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:-.03em;
+}
+.message-intro span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.cbox-wrap{
+  width:100%;
+  max-width:980px;
+  border:1px solid var(--line);
+  background:#fff;
+  overflow:hidden;
+}
+
+.cbox-wrap iframe{
+  display:block;
+  width:100%;
+  height:620px;
+  border:0;
+  background:#fff;
+}
+
+.message-note{
+  max-width:980px;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+}
+
+@media(max-width:760px){
+  .message-intro{
+    margin-top:24px;
+  }
+
+  .cbox-wrap iframe{
+    height:68svh;
+    min-height:500px;
+  }
+}
+
+</style>
 </head>
+
 <body>
-<div class="receipt">
+<div class="shell">
 
-  <div class="r-logo">happymeal</div>
-  <div class="r-sub">AI CHARACTER CREATOR</div>
-
-  <hr class="dash-solid" />
-
-  <div class="r-meta">
-    <span>DATE : 2026</span>
-    <span>REF# : HM-001</span>
-  </div>
-
-  <hr class="dash" />
-
-  <!-- 01 -->
-  <div class="acc-item">
-    <button class="acc-toggle" onclick="toggle(this)">
-      <div class="acc-left">
-        <span class="acc-num">01</span>
-        <span class="acc-name">HAPPYMEAL</span>
-      </div>
-      <span class="acc-plus">+</span>
+<header>
+  <div class="nav">
+    <button class="brand" id="brandBtn">
+      HAPPYMEAL
+      <small>AI CHARACTER CREATOR</small>
     </button>
-    <div class="acc-body">
-      안녕하세요. AI 캐릭터 제작자 <b>해피밀</b>입니다.<br/>
-      내캐내먹을 하고 (제 기준) 맛있으면 공개합니다. ^///^<br/><br/>
-      오랫동안 답변이 달리지 않는다면 알림이 읽음 처리되면서 제가 놓쳤거나, 원댓글 게시물을 찾지 못하는 경우입니다. 중요한 질문일 경우 최근 댓글로 재작성해주시면 찾아가겠습니다...!
+
+    <div class="nav-actions">
+      <button class="nav-link active" id="homeBtn">HOME</button>
+
+      <div class="about-wrap">
+        <button class="nav-link" id="aboutToggle">ABOUT +</button>
+
+        <div class="about-menu" id="aboutMenu">
+          <button data-view="about">ABOUT</button>
+          <button data-view="news">NEWS</button>
+          <button data-view="behind">BEHIND</button>
+          <button data-view="message">MESSAGE</button>
+        </div>
+      </div>
     </div>
   </div>
+</header>
 
-  <!-- 02 -->
-  <div class="acc-item">
-    <button class="acc-toggle" onclick="toggle(this)">
-      <div class="acc-left">
-        <span class="acc-num">02</span>
-        <span class="acc-name">PLATFORMS</span>
+<main>
+
+  <section class="view show" id="view-home">
+    <div class="home">
+      <div class="home-copy">
+        <div class="eyebrow">PERSONAL ARCHIVE / AI CHARACTER CREATOR</div>
+        <div class="lead main-quote">그때그때 좋아하는 걸 만듭니다.</div>
       </div>
-      <span class="acc-plus">+</span>
-    </button>
-    <div class="acc-body">
-      <table class="pf-table">
-        <tr>
-          <td class="pf-cat">[MAIN]</td>
-          <td class="pf-val">CAVEDUCK</td>
-        </tr>
-        <tr>
-          <td class="pf-cat">[SUB]</td>
-          <td class="pf-val">Elyn · teapot · Rofan AI</td>
-        </tr>
-      </table>
-    </div>
-  </div>
 
-  <!-- 03 -->
-  <div class="acc-item">
-    <button class="acc-toggle" onclick="toggle(this)">
-      <div class="acc-left">
-        <span class="acc-num">03</span>
-        <span class="acc-name">UPCOMING</span>
+      <div class="meme-wrap">
+        <div class="meme">
+          <!--
+            메인 짤을 넣을 때:
+            1) 같은 폴더에 main.jpg 또는 main.webp 저장
+            2) 아래 주석을 풀기
+            <img src="main.jpg" alt="HAPPYMEAL main image">
+          -->
+          <div class="meme-placeholder">
+            FUNNY IMAGE<br>
+            / MAIN VISUAL
+          </div>
+        </div>
       </div>
-      <span class="acc-plus">+</span>
-    </button>
-    <div class="acc-body">
-      <div class="work-intro">만들다가 영 아니다 싶으면 묵히고 다른 캐릭터를 제작해서 뭐가 먼저 나올지 모릅니다. 일단은 예정 목록입니다...</div>
-
-      <div class="work-section-title">* 제작 중</div>
-      <div class="work-item-row">진도오 → 이채현</div>
-      <div class="work-item-row">진도오 → 진명오 ✓</div>
-      <div class="work-item-row">로판 시리어스 로맨스</div>
-      <div class="work-item-row">로판 피폐 로맨스</div>
-
-      <div class="work-section-title">* 제작 요청</div>
-      <div class="work-item-row">강률호 → 누나 다인 시뮬 <span style="color:var(--sub);font-size:.68rem">(하숙 컨셉 고민 중🤔)</span></div>
-      <div class="work-item-row">모르카디스 → 라스</div>
-
-      <div class="work-section-title">* 이식 요청</div>
-      <div class="work-item-row">케덕 : 인외정병동여자ver</div>
-      <div class="work-item-row">엘린 : 메이슨 ✓, 천시안, 권태희</div>
-      <div class="work-item-row">티팟 : 태너 ✓, 리암 ✓, 메이슨</div>
-
-      <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dash);">* → 는 파생 캐릭터</div>
-      <div style="margin-top:2px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dash);">* ✓ 제작 완료</div>
     </div>
-  </div>
+  </section>
 
-  <!-- 04 -->
-  <div class="acc-item">
-    <button class="acc-toggle" onclick="toggle(this)">
-      <div class="acc-left">
-        <span class="acc-num">04</span>
-        <span class="acc-name">BEHIND</span>
+  <section class="view" id="view-about">
+    <div class="page-head">
+      <div class="eyebrow">CREATOR / PROFILE</div>
+      <h2>ABOUT</h2>
+    </div>
+
+    <div class="copy">
+      <p>안녕하세요. AI 채팅 캐릭터를 만드는 제작자 해피밀입니다.</p>
+
+      <p>로맨스, 순애, 코미디, 판타지, 음침, 미스터리, 피폐 등 장르는 크게 가리지 않습니다. 생각나는 것을 제작하고 제 기준 맛있으면 공개로 내놓습니다.</p>
+
+      <p>현재는 ‘케이브덕 공식 크리에이터’ 로서 오리지널 캐릭터를 주력으로 공개하고 있습니다. 이전 캐릭터들은 타플랫폼에 있으나 제가 이식 작업에 많은 시간을 들이는 지라… 그냥 갑툭튀 할 수 있습니다.</p>
+
+      <p>오랫동안 답변이 달리지 않는다면 알림이 읽음 처리되면서 제가 놓쳤거나, 원댓글 게시물을 찾지 못하는 경우입니다. 중요한 질문일 경우 새댓글을 재작성해주시면 찾아가겠습니다.</p>
+
+      <p>감사합니다.</p>
+
+      <div class="platform-info">
+        <div class="platform-row">
+          <span>메인 플랫폼</span>
+          <strong>케이브덕</strong>
+        </div>
+        <div class="platform-row">
+          <span>서브 플랫폼</span>
+          <strong>티팟, 엘린, 로판AI</strong>
+        </div>
       </div>
-      <span class="acc-plus">+</span>
-    </button>
-    <div class="acc-body">
-      <a href="https://www.postype.com/@happymeal-set" target="_blank" style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;">→ postype.com/@happymeal-set</a>
     </div>
-  </div>
+  </section>
 
-  <hr class="dash-solid" style="margin-top:14px" />
 
-  <div class="r-footer">
-    CONTACT<br/>
-    <a href="mailto:clearmorningpad@gmail.com">clearmorningpad@gmail.com</a><br/>
-    <br/>
-    감사합니다 &lt;3
-  </div>
+  <section class="view" id="view-behind">
+    <div class="page-head">
+      <div class="eyebrow">MAKING / NOTES</div>
+      <h2>BEHIND</h2>
+    </div>
 
-  <div class="r-stamp">* * * thank you * * *</div>
+    <div class="copy">
+      <p>리뉴얼 중입니다.</p>
+    </div>
+  </section>
+
+  <section class="view" id="view-news">
+    <div class="page-head">
+      <div class="eyebrow">JOURNAL / STATUS</div>
+      <h2>NEWS</h2>
+    </div>
+
+    <div class="status-grid">
+      <section class="status-card">
+        <div class="status-head">
+          <span class="status-dot"></span>
+          <h3>제작 중</h3>
+        </div>
+        <div class="status-list">
+          <div class="status-empty">아직 등록된 항목이 없습니다.</div>
+        </div>
+      </section>
+
+      <section class="status-card">
+        <div class="status-head">
+          <span class="status-dot"></span>
+          <h3>제작 예정</h3>
+        </div>
+        <div class="status-list">
+          <div class="status-empty">아직 등록된 항목이 없습니다.</div>
+        </div>
+      </section>
+
+      <section class="status-card">
+        <div class="status-head">
+          <span class="status-dot"></span>
+          <h3>제작 완료</h3>
+        </div>
+        <div class="status-list">
+          <div class="status-empty">아직 등록된 항목이 없습니다.</div>
+        </div>
+      </section>
+
+      <section class="status-card">
+        <div class="status-head">
+          <span class="status-dot"></span>
+          <h3>이식 예정</h3>
+        </div>
+        <div class="status-list">
+          <div class="status-empty">아직 등록된 항목이 없습니다.</div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="view" id="view-message">
+    <div class="page-head">
+      <div class="eyebrow">OPEN TALK / GUESTBOOK</div>
+      <h2>MESSAGE</h2>
+    </div>
+
+    <div class="message-intro">
+      <p>편하게 놀다 가세요.</p>
+      <span>캐릭터 이야기 · 잡담 · 질문 · 헛소리 환영</span>
+    </div>
+
+    <div class="cbox-wrap">
+      <iframe
+        src="https://www3.cbox.ws/box/?boxid=3560877&boxtag=ONZqFL"
+        title="HAPPYMEAL Cbox"
+        width="100%"
+        height="620"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        scrolling="auto"
+        allowtransparency="yes">
+      </iframe>
+    </div>
+
+    <div class="message-note">
+      공개 소통창입니다. 서로 편하게 이야기하되 개인정보는 남기지 말아주세요.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <a href="mailto:hello@yourmail.com">HELLO@YOURMAIL.COM</a>
+</footer>
 
 </div>
 
 <script>
-  function toggle(btn) {
-    const item = btn.closest('.acc-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+const views = ['home','about','behind','news','message'];
+const aboutToggle = document.getElementById('aboutToggle');
+const aboutMenu = document.getElementById('aboutMenu');
+const homeBtn = document.getElementById('homeBtn');
+const brandBtn = document.getElementById('brandBtn');
+
+function showView(name){
+  views.forEach(v=>{
+    document.getElementById('view-'+v).classList.toggle('show',v===name);
+  });
+
+  homeBtn.classList.toggle('active',name==='home');
+  aboutToggle.classList.toggle('active',name!=='home');
+  aboutMenu.classList.remove('show');
+  aboutToggle.textContent='ABOUT +';
+
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+aboutToggle.addEventListener('click',()=>{
+  const open=aboutMenu.classList.toggle('show');
+  aboutToggle.textContent=open?'ABOUT −':'ABOUT +';
+});
+
+document.querySelectorAll('[data-view]').forEach(btn=>{
+  btn.addEventListener('click',()=>showView(btn.dataset.view));
+});
+
+homeBtn.addEventListener('click',()=>showView('home'));
+brandBtn.addEventListener('click',()=>showView('home'));
+
+document.addEventListener('click',(e)=>{
+  if(!e.target.closest('.about-wrap')){
+    aboutMenu.classList.remove('show');
+    aboutToggle.textContent='ABOUT +';
   }
+});
 </script>
 </body>
 </html>
