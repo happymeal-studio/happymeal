@@ -213,34 +213,17 @@ main{
 /* funny image slot */
 .meme-wrap{
   align-self:center;
+  justify-self:end;
+  width:100%;
+  max-width:520px;
 }
 
-.meme{
-  width:100%;
-  aspect-ratio:4/3;
-  border:1px solid var(--line);
-  background:#f5f5f3;
-  overflow:hidden;
-  position:relative;
-}
-
-.meme img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+.main-meme{
   display:block;
-  background:#fff;
-}
-
-.meme-placeholder{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:var(--muted);
-  font:800 10px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.08em;
+  width:100%;
+  height:auto;
+  max-height:520px;
+  object-fit:contain;
 }
 
 /* internal pages */
@@ -377,10 +360,6 @@ footer a:hover{
     font-size:20px;
   }
 
-  .meme{
-    aspect-ratio:1/1;
-  }
-
   .copy{
     padding-top:28px;
   }
@@ -430,70 +409,13 @@ footer a:hover{
   font-weight:600;
 }
 
-.status-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-  margin-top:34px;
-}
-.status-card{
-  border:1px solid var(--line);
-  background:#fff;
-  min-height:210px;
-}
-.status-head{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  padding:13px 14px;
-  border-bottom:1px solid var(--line);
-}
-.status-head h3{
-  margin:0;
-  font:900 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.06em;
-}
-.status-dot{
-  width:8px;
-  height:8px;
-  border:1px solid var(--line);
-  border-radius:50%;
-  background:#fff;
-}
-.status-list{
-  padding:14px;
-}
-.status-empty{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-}
-.status-item{
-  padding:10px 0;
-  border-bottom:1px solid #ddd;
-}
-.status-item:last-child{
-  border-bottom:0;
-}
-.status-item strong{
-  display:block;
-  font-size:14px;
-  margin-bottom:4px;
-}
-.status-item span{
-  color:var(--muted);
-  font-size:11px;
-}
 
 @media(max-width:760px){
   .platform-row{
     grid-template-columns:100px 1fr;
     gap:14px;
   }
-  .status-grid{
-    grid-template-columns:1fr;
   }
-}
 
 
 .message-intro{
@@ -546,6 +468,185 @@ footer a:hover{
   }
 }
 
+
+.news-accordion{
+  margin-top:34px;
+  max-width:980px;
+  border-top:1px solid var(--line);
+}
+
+.news-item{
+  border-bottom:1px solid var(--line);
+}
+
+.news-item summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:20px 0;
+  cursor:pointer;
+  user-select:none;
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+
+.news-item summary::-webkit-details-marker{
+  display:none;
+}
+
+.news-toggle{
+  font:700 18px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  transition:transform .18s ease;
+}
+
+.news-item[open] .news-toggle{
+  transform:rotate(45deg);
+}
+
+.news-body{
+  padding:0 0 22px;
+}
+
+.news-empty{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.news-entry{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:18px;
+  padding:12px 0;
+  border-top:1px solid #e2e2de;
+}
+
+.news-entry:first-child{
+  border-top:0;
+}
+
+.news-entry time{
+  color:var(--muted);
+  font:800 9px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.06em;
+}
+
+.news-entry strong{
+  font-size:14px;
+  font-weight:600;
+}
+
+@media(max-width:760px){
+  .news-item summary{
+    padding:17px 0;
+    font-size:15px;
+  }
+
+  .news-entry{
+    grid-template-columns:86px 1fr;
+    gap:12px;
+  }
+}
+
+
+.about-copy{
+  max-width:860px;
+  padding-top:clamp(30px,4vw,48px);
+}
+
+.about-copy p{
+  max-width:42em;
+  margin:0 0 clamp(22px,3vw,34px);
+  font-size:clamp(16px,1.35vw,21px);
+  line-height:1.85;
+  letter-spacing:-.02em;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+
+.platform-info{
+  margin-top:clamp(38px,5vw,58px);
+  max-width:760px;
+}
+
+@media(max-width:760px){
+  .about-copy{
+    padding-top:28px;
+  }
+
+  .about-copy p{
+    font-size:16px;
+    line-height:1.8;
+    margin-bottom:24px;
+  }
+
+  .platform-row{
+    grid-template-columns:96px 1fr;
+    gap:14px;
+  }
+}
+
+
+.status-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:34px;
+}
+.status-card{
+  border:1px solid var(--line);
+  background:#fff;
+  min-height:210px;
+}
+.status-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:13px 14px;
+  border-bottom:1px solid var(--line);
+}
+.status-head h3{
+  margin:0;
+  font:900 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.06em;
+}
+.status-dot{
+  width:8px;
+  height:8px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:#fff;
+}
+.status-list{
+  padding:14px;
+}
+.status-empty{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+@media(max-width:760px){
+  .status-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+@media(max-width:760px){
+  .meme-wrap{
+    justify-self:start;
+    max-width:min(100%,520px);
+  }
+
+  .main-meme{
+    width:100%;
+    max-height:none;
+  }
+}
+
 </style>
 </head>
 
@@ -586,18 +687,10 @@ footer a:hover{
       </div>
 
       <div class="meme-wrap">
-        <div class="meme">
-          <!--
-            메인 짤을 넣을 때:
-            1) 같은 폴더에 main.jpg 또는 main.webp 저장
-            2) 아래 주석을 풀기
-            <img src="main.jpg" alt="HAPPYMEAL main image">
-          -->
-          <div class="meme-placeholder">
-            FUNNY IMAGE<br>
-            / MAIN VISUAL
-          </div>
-        </div>
+        <img
+          class="main-meme"
+          src="https://i.imgur.com/qeBpxfR.jpeg"
+          alt="HAPPYMEAL main image">
       </div>
     </div>
   </section>
@@ -608,7 +701,7 @@ footer a:hover{
       <h2>ABOUT</h2>
     </div>
 
-    <div class="copy">
+    <div class="copy about-copy">
       <p>안녕하세요. AI 채팅 캐릭터를 만드는 제작자 해피밀입니다.</p>
 
       <p>로맨스, 순애, 코미디, 판타지, 음침, 미스터리, 피폐 등 장르는 크게 가리지 않습니다. 생각나는 것을 제작하고 제 기준 맛있으면 공개로 내놓습니다.</p>
@@ -651,7 +744,7 @@ footer a:hover{
     </div>
 
     <div class="status-grid">
-      <section class="status-card">
+      <div class="status-card">
         <div class="status-head">
           <span class="status-dot"></span>
           <h3>제작 중</h3>
@@ -659,9 +752,9 @@ footer a:hover{
         <div class="status-list">
           <div class="status-empty">아직 등록된 항목이 없습니다.</div>
         </div>
-      </section>
+      </div>
 
-      <section class="status-card">
+      <div class="status-card">
         <div class="status-head">
           <span class="status-dot"></span>
           <h3>제작 예정</h3>
@@ -669,9 +762,9 @@ footer a:hover{
         <div class="status-list">
           <div class="status-empty">아직 등록된 항목이 없습니다.</div>
         </div>
-      </section>
+      </div>
 
-      <section class="status-card">
+      <div class="status-card">
         <div class="status-head">
           <span class="status-dot"></span>
           <h3>제작 완료</h3>
@@ -679,9 +772,9 @@ footer a:hover{
         <div class="status-list">
           <div class="status-empty">아직 등록된 항목이 없습니다.</div>
         </div>
-      </section>
+      </div>
 
-      <section class="status-card">
+      <div class="status-card">
         <div class="status-head">
           <span class="status-dot"></span>
           <h3>이식 예정</h3>
@@ -689,7 +782,7 @@ footer a:hover{
         <div class="status-list">
           <div class="status-empty">아직 등록된 항목이 없습니다.</div>
         </div>
-      </section>
+      </div>
     </div>
   </section>
 
@@ -701,7 +794,7 @@ footer a:hover{
 
     <div class="message-intro">
       <p>편하게 놀다 가세요.</p>
-      <span>캐릭터 이야기 · 잡담 · 질문 · 헛소리 환영</span>
+      <span>캐릭터 이야기 · 잡담 · 질문</span>
     </div>
 
     <div class="cbox-wrap">
@@ -719,14 +812,14 @@ footer a:hover{
     </div>
 
     <div class="message-note">
-      공개 소통창입니다. 서로 편하게 이야기하되 개인정보는 남기지 말아주세요.
+      공개 소통창입니다.
     </div>
   </section>
 
 </main>
 
 <footer>
-  <a href="mailto:hello@yourmail.com">HELLO@YOURMAIL.COM</a>
+  <a href="mailto:clearmorningpad@gmail.com">CLEARMORNINGPAD@GMAIL.COM</a>
 </footer>
 
 </div>
