@@ -1,9 +1,8 @@
-
 <!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>HAPPYMEAL</title>
 
@@ -117,7 +116,7 @@ header{
 .about-menu{
   position:absolute;
   top:calc(100% + 14px);
-  right:0;
+  right:calc(-1 * max(18px, env(safe-area-inset-right)));
   width:190px;
   border:1px solid var(--line);
   background:#fff;
@@ -335,8 +334,8 @@ footer a:hover{
 
   .about-menu{
     top:calc(100% + 12px);
-    right:0;
-    width:min(220px,calc(100vw - 36px));
+    right:calc(-1 * max(18px, env(safe-area-inset-right)));
+    width:min(220px,calc(100vw - 18px));
   }
 
   .view{
@@ -789,6 +788,11 @@ footer a:hover{
   font-weight:700;
 }
 
+
+.status-sub{
+  color:var(--muted);
+  font-size:12px;
+}
 </style>
 </head>
 
@@ -894,7 +898,7 @@ footer a:hover{
           <span class="status-toggle">+</span>
         </summary>
         <div class="status-list">
-          <div class="status-entry">이채현</div>
+          <div class="status-entry"><strong>케이브덕 오리지널:</strong> 이채현</div>
         </div>
       </details>
 
@@ -904,18 +908,20 @@ footer a:hover{
           <span class="status-toggle">+</span>
         </summary>
         <div class="status-list">
-          <div class="status-empty">아직 등록된 항목이 없습니다.</div>
+          <div class="status-entry"><strong>케이브덕 오리지널:</strong> 재스퍼 <span class="status-sub">(인외정병동 단독)</span></div>
+          <div class="status-entry"><strong>케이브덕 오리지널:</strong> 라스 <span class="status-sub">(모르카디스 파생)</span></div>
+          <div class="status-entry"><strong>케이브덕 오리지널:</strong> SCU 신규 캐릭터</div>
         </div>
       </details>
 
       <details class="status-card">
         <summary class="status-head">
-          <span class="status-title"><span class="status-dot"></span>이식요청</span>
+          <span class="status-title"><span class="status-dot"></span>이식 요청</span>
           <span class="status-toggle">+</span>
         </summary>
         <div class="status-list">
           <div class="status-entry"><strong>엘린:</strong> 권태희</div>
-          <div class="status-entry"><strong>티팟:</strong> 진명오, 린바오, 모르카디스</div>
+          <div class="status-entry"><strong>티팟:</strong> 진명오, 린바오, 모르카디스, 천시안</div>
         </div>
       </details>
     </div>
