@@ -794,6 +794,330 @@ footer a:hover{
   color:var(--muted);
   font-size:12px;
 }
+
+/* 완료 항목: 빨간 취소선 */
+.status-complete{
+  text-decoration:line-through;
+  text-decoration-color:#ef5a3d;
+  text-decoration-thickness:2px;
+  text-decoration-skip-ink:none;
+}
+
+
+/* BEHIND — boxed accordion, matching NEWS status cards */
+.behind-accordion{
+  width:100%;
+  max-width:980px;
+  margin-top:34px;
+}
+.behind-item summary{list-style:none;}
+.behind-item summary::-webkit-details-marker{display:none;}
+.behind-body{
+  padding:26px 18px 32px;
+}
+.behind-body h4{
+  margin:0 0 16px;
+  font-size:22px;
+  line-height:1.35;
+  letter-spacing:-.03em;
+}
+.behind-body p{
+  margin:0 0 22px;
+  font-size:17px;
+  line-height:1.95;
+  letter-spacing:-.02em;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+.behind-body p.lead-strong{font-weight:700;}
+.behind-body ul{
+  margin:0 0 28px;
+  padding-left:20px;
+}
+.behind-body li{
+  margin:0 0 10px;
+  font-size:16px;
+  line-height:1.85;
+  letter-spacing:-.02em;
+}
+/* Empty images are invisible; replace src to show them. */
+.behind-body img[src=""]{display:none !important;}
+.behind-divider{
+  height:1px;
+  margin:34px 0 28px;
+  background:var(--line);
+}
+@media(max-width:760px){
+  .behind-accordion{margin-top:28px;}
+  .behind-body{padding:22px 16px 28px;}
+  .behind-body h4{font-size:20px;margin-bottom:14px;}
+  .behind-body p{font-size:16px;line-height:1.85;margin-bottom:20px;}
+  .behind-body li{font-size:15px;line-height:1.8;}
+}
+
+/* Desktop layout lock: keep the site a readable, steady size on larger monitors.
+   Mobile styles above remain active below 761px. */
+@media (min-width:761px){
+  .nav{
+    width:min(924px,100%);
+  }
+  .view{
+    width:min(960px,100%);
+    padding:48px 18px 68px;
+  }
+  .home{
+    width:100%;
+    max-width:820px;
+    gap:32px;
+  }
+  .home-copy{
+    max-width:820px;
+  }
+  .main-meme{
+    max-width:min(440px,100%);
+    max-height:380px;
+  }
+  .home .lead{
+    font-size:22px;
+  }
+  .main-quote{
+    font-size:36px !important;
+  }
+  .page-head,
+  .copy,
+  .status-grid,
+  .message-intro,
+  .cbox-wrap,
+  .message-note,
+  .behind-accordion{
+    max-width:820px;
+  }
+  .page-head h2{
+    font-size:82px;
+  }
+  .copy p,
+  .about-copy p,
+  .behind-body p{
+    font-size:17px;
+    line-height:1.8;
+  }
+  .behind-body h4{
+    font-size:21px;
+  }
+  .platform-label,
+  .platform-sep,
+  .platform-value{
+    font-size:14px;
+  }
+}
+
+
+/* BEHIND - compact TMI notes and centered image captions */
+.behind-body .behind-tmi-title{
+  margin-bottom:10px;
+  font-size:14px;
+  letter-spacing:.02em;
+}
+.behind-body .behind-tmi{
+  list-style:none;
+  padding-left:0;
+  margin-bottom:28px;
+}
+.behind-body .behind-tmi li{
+  position:relative;
+  padding-left:17px;
+  margin-bottom:9px;
+  font-size:14px;
+  line-height:1.75;
+}
+.behind-body .behind-tmi li::before{
+  content:'✦';
+  position:absolute;
+  left:0;
+  top:.1em;
+  font-size:10px;
+  color:var(--muted);
+}
+.behind-body p.behind-image-caption{
+  text-align:center;
+  font-size:14px;
+  margin-top:-8px;
+  margin-bottom:25px;
+}
+@media(max-width:760px){
+  .behind-body .behind-tmi li{font-size:13px;line-height:1.75;}
+  .behind-body p.behind-image-caption{font-size:13px;}
+}
+
+
+
+/* HAMMEAL ORDER: compact VN-style dialogue */
+.order-stage{
+  width:100%;
+  max-width:820px;
+  margin:30px 0 0;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.order-topline{
+  min-height:46px;
+  padding:13px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  border-bottom:1px solid var(--line);
+  font:800 10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.07em;
+}
+.order-topline .store-open{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.order-topline .store-open::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.order-portrait-area{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px 18px 20px;
+  min-height:240px;
+  background:#fffdc5;
+}
+.order-portrait-area::before{
+  content:'STAFF NO.001';
+  position:absolute;
+  left:18px;
+  top:17px;
+  color:#a09b91;
+  font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.08em;
+}
+.order-portrait-img-wrap{
+  width:min(100%,220px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.order-portrait-img{
+  display:block;
+  width:100%;
+  max-width:220px;
+  max-height:220px;
+  height:auto;
+  object-fit:contain;
+}
+.hammeal-drawing{width:225px;height:196px;display:block;overflow:visible}
+.hammeal-drawing .hammeal-eye{transform-box:fill-box;transform-origin:center;transition:transform .16s ease}
+.order-stage[data-mood="secret"] .hammeal-drawing .hammeal-eye{transform:scaleY(.42)}
+.order-stage[data-mood="shy"] .hammeal-drawing .hammeal-eye{transform:scaleY(.75)}
+.hammeal-id{
+  padding:7px 14px;
+  border:1px solid #cfb9a3;
+  background:#fff;
+  font:800 10px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.04em;
+}
+.order-dialogue{padding:23px 26px 26px;min-height:128px;border-top:1px solid var(--line)}
+.order-speaker{margin:0 0 10px;font-weight:900;font-size:12px;letter-spacing:-.02em;color:var(--accent)}
+.order-speech{margin:0;font-size:17px;font-weight:500;line-height:1.72;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere}
+/* Choosing an answer advances one VN dialogue line, not a simulated live chat. */
+.order-choices{display:flex;flex-direction:column;gap:10px;width:100%;max-width:820px;margin-top:14px}
+.order-choice{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;border:1px solid var(--line);background:#fff;text-align:left;padding:15px 18px;font-size:14px;font-weight:700;line-height:1.45;transition:background .16s,color .16s,border-color .16s}
+.order-choice span{font:800 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}
+.order-choice:hover,.order-choice:focus-visible,.order-choice[aria-pressed="true"]{background:#111;color:#fff;border-color:#111}
+.order-choice:hover span,.order-choice:focus-visible span,.order-choice[aria-pressed="true"] span{color:#fff}
+.order-choice:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.order-popup{max-width:820px;width:100%;margin-top:22px;border:1px solid var(--line);padding:22px 24px;background:#fff}
+.order-popup[hidden]{display:none!important}
+.order-popup-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.order-popup-kicker{color:var(--muted);font:800 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em}
+.order-popup-close{border:0;background:none;cursor:pointer;font-size:22px;padding:0 2px;line-height:1}
+.order-popup h3{margin:0 0 13px;font-size:25px;letter-spacing:-.04em;line-height:1.35}
+.order-popup p{margin:0 0 14px;font-size:14px;line-height:1.75;word-break:keep-all}
+.order-menu-card{display:grid;grid-template-columns:160px minmax(0,1fr);gap:22px;align-items:center}
+.order-menu-img{width:100%;height:178px;object-fit:cover;border:1px solid #deded8;background:#f5f4f0}
+.order-menu-no-image{width:100%;height:178px;border:1px dashed #b3b0a6;background:#f7f6f3;display:flex;align-items:center;justify-content:center;color:#89867d;text-align:center;font:800 11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.order-menu-name{font-size:22px;font-weight:900;line-height:1.3;margin:5px 0 10px}
+.order-menu-desc{color:#54544f;font-size:14px;line-height:1.7;margin:0 0 15px}
+.order-menu-link{display:inline-block;border:1px solid #111;background:#111;color:#fff;padding:11px 13px;font-size:12px;font-weight:800;line-height:1.2}
+.order-menu-link:hover{background:var(--accent);border-color:var(--accent)}
+.order-menu-link.missing{border-color:#c6c6c2;background:#eee;color:#8b8b86;cursor:default}
+.private-form{display:flex;flex-direction:column;gap:13px}
+.private-honeypot{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+.private-form textarea{display:block;width:100%;min-height:150px;resize:vertical;border:1px solid var(--line);border-radius:0;padding:14px;font-size:14px;line-height:1.7;outline:0;background:#fff}
+.private-form textarea:focus{border-color:var(--accent)}
+.private-form button{align-self:flex-end;border:1px solid #111;background:#111;color:#fff;font:800 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.07em;padding:15px 18px}
+.private-form button:disabled{opacity:.42;cursor:not-allowed}
+.private-status{color:var(--muted);font-size:12px;line-height:1.6}
+.private-status.error{color:#ae3d28}
+@media(max-width:760px){
+  .order-stage{margin-top:24px}
+  .order-topline{padding:12px 14px;min-height:42px;font-size:9px}
+  .order-portrait-area{padding:22px 15px 16px;min-height:200px}
+  .order-portrait-img{max-width:180px;max-height:180px}
+  .order-portrait-placeholder{min-height:170px}
+  .order-dialogue{padding:18px;min-height:112px}
+  .order-speech{font-size:16px}
+  .order-choices{gap:9px}
+  .order-choice{padding:14px 16px;font-size:14px}
+  .order-popup{padding:18px 16px}
+  .order-popup h3{font-size:22px}
+  .order-menu-card{grid-template-columns:1fr;gap:16px}
+  .order-menu-img,.order-menu-no-image{height:200px;max-width:300px}
+}
+
+
+/* 1:1 상담 안내도 햄밀의 대사창 안에서 이어서 보여줍니다. */
+.order-dialogue .order-inquiry-inline{
+  width:100%;
+  max-width:none;
+  margin:18px 0 0;
+  padding:20px 0 0;
+  border:0;
+  border-top:1px solid #e2e2de;
+  background:transparent;
+}
+.order-dialogue .order-inquiry-inline .order-popup-head{margin-bottom:14px}
+
+/* 햄밀의 대사 아래 바로 나오는 메뉴 카드 */
+.order-dialogue .order-menu-inline{
+  width:100%;
+  max-width:none;
+  margin:18px 0 0;
+  padding:20px 0 0;
+  border:0;
+  border-top:1px solid #e2e2de;
+  background:transparent;
+}
+.order-dialogue .order-menu-inline .order-popup-head{margin-bottom:14px}
+.order-dialogue .order-menu-inline .order-menu-card{margin:0}
+.order-inquiry-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--line);
+  background:var(--ink);
+  color:#fff;
+  padding:13px 18px;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.3;
+}
+.order-inquiry-link{cursor:pointer;font-family:inherit;letter-spacing:-.01em}
+.order-inquiry-link:hover{background:var(--accent);border-color:var(--accent)}
+.order-inquiry-panel .order-inquiry-note{margin:14px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
+.order-inquiry-link[hidden], .order-inquiry-unset[hidden]{display:none!important}
+.order-inquiry-panel .order-inquiry-unset{
+  padding:14px 16px;
+  border:1px solid #d4d4cf;
+  background:#f8f8f5;
+  color:var(--muted);
+  font-size:13px;
+}
+@media(max-width:760px){
+  .order-dialogue .order-menu-inline{padding:18px 0 0;margin-top:16px}
+  .order-dialogue .order-inquiry-inline{padding:18px 0 0;margin-top:16px}
+}
+
 </style>
 </head>
 
@@ -817,7 +1141,7 @@ footer a:hover{
           <button data-view="about">ABOUT</button>
           <button data-view="news">NEWS</button>
           <button data-view="behind">BEHIND</button>
-          <button data-view="message">MESSAGE</button>
+          <button data-view="message">ORDER</button>
         </div>
       </div>
     </div>
@@ -874,17 +1198,130 @@ footer a:hover{
     </div>
   </section>
 
-
   <section class="view" id="view-behind">
     <div class="page-head">
       <div class="eyebrow">MAKING / NOTES</div>
       <h2>BEHIND</h2>
     </div>
 
-    <div class="copy">
-      <p>리뉴얼 중입니다.</p>
+    <div class="behind-accordion">
+      <details class="status-card behind-item" id="behind-muneo-bros">
+        <summary class="status-head">
+          <span class="status-title"><span class="status-dot"></span>진도오, 진명오 무너무너 형제</span>
+          <span class="status-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div class="behind-body">
+        <h4>1. 제작 비하인드</h4>
+
+        <p>때는 모 플랫폼 공모전을 준비하던 중이었습니다. 도통 캐내림이 안 내려와서 고민하던 차, 지인 A가 말했습니다. 님 그때 그 문어캐 내.</p>
+        <p>오.</p>
+        <p>그때 그 문어란.</p>
+
+        <img src="https://i.imgur.com/TP4N7hz.png" alt="" style="display:block;width:520px;max-width:100%;height:auto;margin:24px auto;">
+
+        <p>이것입니다. 저는 주로 나돌아다니거나 대화하면서 아이디어를 떠올리는 편인데, 지인 A와 아쿠아리움에 갔다가 대문어를 보게됩니다! 평생 단 하나의 반려? 이거 완전 순애잖아! 언젠간 캐로 내겠다! 하고 사진을 찍어 둔 것이었죠.</p>
+
+        <p>나: 근데 스토리 부여를 어찌할지 모르겠다<br>
+        지인 A: 평생 단 하나의 반려니까. ‘내 아를 낳아도.’ 어떰.<br>
+        나: 좋다. 거기다 마침 음침캐가 먹고 싶었으니까 x변태 요소를 넣어서 해야겠다… 근데 직업이 경찰인.</p>
+
+        <img src="https://i.imgur.com/VuqvOU3.png" alt="" style="display:block;width:520px;max-width:100%;height:auto;margin:24px auto;">
+
+        <p>경찰이 권력남용으로 시민을 스토킹을 하는 스토리. (채현이 흰머리만 늘어나…)</p>
+        <p class="lead-strong">네, 진도오는 이렇게 만들어졌습니다!</p>
+
+        <p>진명오는 진도오의 모브 캐릭터였습니다. 아무래도 도오가 너무 또라이다 보니 억제기가 필요했고, 채현이는 도오를 제어하기엔 부족했습니다. 그래서 ‘K장남’이 필요했습니다.</p>
+
+        <img src="https://i.imgur.com/Xl1OrDk.png" alt="" style="display:block;width:520px;max-width:100%;height:auto;margin:24px auto;">
+
+        <p class="lead-strong">네, 진명오는 이렇게 만들어졌습니다!</p>
+
+        <p>진도오 공개 이후 진명오와 단독으로 대화하고 싶다는 요청이 들어왔고, 이후 단독으로 내놓게 되었습니다.</p>
+
+        <p>실은 대문어는 평생 단 한 번만 번식하고, 짝짓기를 마친 수컷은 얼마 지나지 않아 죽고 암컷은 알을 품다가 부화와 함께 생을 마칩니다. 하지만 그러면 너무 진지새드피폐해져버리니 그 설정은 배제하고 캐릭터를 만들었습니다. 대신 대문어 수인은 첫날밤을 가진 상대에게 각인된다는 설정을 넣고, 꼴까닥은 빼버렸습니다. 어디까지나 창작 세계관이니까요.</p>
+
+        <div class="behind-divider"></div>
+
+        <h4>2. 사랑의 전도사 진도오</h4>
+
+        <p>결혼에 미미미미미친 남자. 김칫국도 모자라서 김치찌개를 드링킹한 남자. 2세 이름을 300개씩 짓고, 육아용품 및 육아서적까지 줄줄이 꿰고 있는 출산에 돈 남자… 가 진도오입니다.</p>
+
+        <p>원래도 또라이 기질은 있었으나, 각인이 거기다가 또라이력 x10000을 해버린 상황입니다. PC의 모든 것을 긍정적으로 사고하는 미친놈이 되어버렸죠. PC를 만난 후 읽기 시작한 웹소설이 영향을 끼치긴 했지만, 어디까지나 뭐 도오의 타고난 성향입니다. 너무 억빠라구요?</p>
+
+        <p>진도오: 사랑은 교통사고처럼 시작해 눈에 망붕렌즈를 끼고마는… 그런 법입니다. 🐙🧡</p>
+
+        <p class="lead-strong">PC의 어떤 말도 긍정적 해석을 해버리죠.</p>
+
+        <p>하지만 우리 진도오, 나름 세심하고 여린 남자입니다. 섭섭한 말을 들으면 좁은 곳에 들어가 옹망졸망한 눈으로 온몸으로 나 삐졌어를 외치며 PC를 쳐다봅니다. 어떻게 쓰레기통이나 냉장고 사이에 들어가나요? 라고 종종 물어보셨는데, 문어 수인인 만큼 몸을 흐물텅하게 만들어서 들어갈 수 있습니다. 대문어는 뼈가 없고, 몸에서 유일하게 단단한 부위가 입(부리)이라 부리만 통과할 수 있는 틈이면 어디든 쏙 빠져나가거든요. 고양이가 좁은 공간을 통과하는 것처럼 생각하시면 되겠네요. 이건 실제 문어의 습성에서 가져왔어요. 정말 귀엽지 않나요.</p>
+
+        <p>자신의 몸 일부를 잘라 음식으로 만드는 습성 역시 문어의 재생 능력에서 가져왔습니다. 문어는 다리를 잃어도 다시 자라나거든요. 이는 대문어식의 사랑입니다. 지독하게 헌신적이죠. 방식이 다를 뿐, 사랑을 표현하는 방법입니다. 좀 고어할 수도 있지만, 먹기 싫다고 하면 절대 강요는 안 합니다!!</p>
+
+        <p class="lead-strong behind-tmi-title">TMI</p>
+        <ul class="behind-tmi">
+          <li>도오는 형을 무서워합니다. (장남이라는 존재에 대하여)</li>
+          <li>도오는 채현이 자신의 사생활에 관심이 너무 많다고 생각합니다. (이래서 잘해주면 안 돼)</li>
+          <li>도오 머리카락에 섞인 촉수들은 다들 분리된 자아를 가지고 있습니다. (문어의 경우 신경세포의 상당수가 뇌가 아닌 다리 쪽에 몰려 있어서, 다리가 중앙 뇌와 따로 놀듯 독립적으로 움직인다고 하더라구요)</li>
+          <li>도오는 피부 수분 관리를 위해 수분 크림 대용량을 사용합니다. (피부에 양보하세요)</li>
+          <li>도오는 지상에서 반드시 이뤄야 할 중대 과업이 있어서 퇴사 하지 않습니다. (저는 퇴사할게여)</li>
+        </ul>
+
+        <img src="https://i.imgur.com/PY2CvfJ.png" alt="" style="display:block;width:520px;max-width:100%;height:auto;margin:24px auto;">
+
+        <p class="lead-strong behind-image-caption">단백질 보충 개이득.</p>
+
+        <div class="behind-divider"></div>
+
+        <h4>3. 오역된 사랑 진명오</h4>
+
+        <p>명오는 기본적으로 ‘고장 난 번역기’가 뇌에 든 인물입니다. (어찌 보면 도오랑은 다른 긍정 회로.) 뇌에 치명적인 버그가 있는 거죠. 예를 들면 ‘설렘’이 ‘부정맥 의심’으로, ‘호감’이 ‘나는 지금 이 개체의 특이성에 대해 지적 호기심을 느끼고 있다’로 번역되는…</p>
+
+        <p>37년 동안 연애는커녕 제대로 된 감정 교류도 없이, 심해 생물이랑 논문만 파고 살아온 남자가 갑자기 자기 세계에 침입한 ‘PC’라는 버그를 만나며 변화하게 됩니다. 도오에게서 이미 각인된 또라이 대문어의 사랑을 보고 싶었다면, 명오에게서는 각인되지 않은 상태에서 대문어의 사랑이 어떻게 진행되는지를 보고 싶었어요. 하지만 진지하지만은 않은, 엉뚱한 맛이 있는!</p>
+
+        <p>명오는 포식자, 대문어 수인임에도 불구하고 보통은 촉수를 드러내지 않고 숨깁니다. 대문어 수인 일족의 촉수는 가장 원초적인 욕망과 연결되어 있습니다. 맛을 보고 (실제 문어 빨판에는 맛을 느끼는 감각기관이 있어요!), 촉감을 느끼고, 상대를 휘감고 교미하고, 모든 본능이 집약된 기관이죠.</p>
+
+        <p>그러나 연구원인 명오에게는 너무나 ‘동물적’인 부분이에요. 이성으로 통제하고 싶은 거죠. 또한 피식자 수인에 대한 존중의 표현이기도 합니다. 따라서 그걸 드러낸다는 건, 자신의 가장 깊은 내면, 날것의 욕망을 상대에게 전부 내보이는 일입니다. PC를 너무나도 원하는 순간이 오면 이성이 본능을 붙잡지 못하겠죠. 어쩌면 명오의 진짜 이야기는 그 순간부터 시작되는 게 아닐런지.</p>
+
+        <p>개인적으로는 감정을 잘 느끼지 않는 무뚝뚝한 캐릭터에게 ‘프로토콜 + 시스템 + 등등’ 같은 AI 특유의 클리셰를 싫어해서 프롬프트에 (제발 하지 마 제발 금지해) 지침을 넣는데, 명오 같은 경우는 넣지 않았습니다. 그것 자체가 명오라고 생각했거든요.</p>
+
+        <p>그래서 고백도 아래와 같은 명오식 언어로 나오곤 합니다.</p>
+        <p>‘나의 모든 연구 데이터를 당신과 공유하고 싶습니다’<br>
+        ‘당신은 나의 가장 중요한 관찰 기록입니다’</p>
+
+        <p>딱딱할 수 있지만, 또 귀엽지 않나요.</p>
+
+        <p class="lead-strong behind-tmi-title">TMI</p>
+        <ul class="behind-tmi">
+          <li>명오는 도오를 사랑합니다. (어디까지나 형제로서)</li>
+          <li>명오는 재목이 자신의 말에 주석을 달아 번역하는 것을 일종의 언어 실험이라고 생각합니다. (정확하긴 해..)</li>
+          <li>명오는 요리를 아주 잘합니다. (문어 요리라면 식재료로 자기 다리를 씀)</li>
+          <li>명오는 주기적으로 자라나는 머리카락 사이 촉수 다리를 직접 잘라줍니다. (미용실에 가면 추가 요금이 나와서 조금 슬퍼짐)</li>
+          <li>명오는 대형 김치냉장고가 침대보다 더 적합한 수면 환경이 될 수 있다고 생각합니다. (진지하게)</li>
+        </ul>
+
+        <img src="https://i.imgur.com/fTs5We0.png" alt="" style="display:block;width:520px;max-width:100%;height:auto;margin:24px auto;">
+
+        <p class="lead-strong behind-image-caption">37년 모태솔로설이 학계의 정설</p>
+
+        <div class="behind-divider"></div>
+
+        <h4>4. 가정 배경</h4>
+
+        <p>원래는 부모님 중 한 분이 돌아가시고, 남은 한 분이 해양생물이 아닌 수인이나 인간과의 결혼을 반대한다는 설정이 있었습니다. 하지만 수많은 대화 결과 AI 모델들이 좋아하는 피폐물로 가는 경향 (특히 그 분야의 전문가 젬.이.오.)이 있어서 삭제했습니다. 글쎄! 로맨스 코미디! 라고!</p>
+
+        <p>대신 아버지는 돌아가셨지만, 어머니는 살아계시고 쾌활하고 자유분방한 성격에 해외여행을 자주 다니시는 분으로 했습니다. 아들들을 사랑하지만 간섭하지 않습니다. 이 시대의 MZ들이 원하는 쿨한 어머니상…</p>
+
+        <div class="behind-divider"></div>
+
+        <h4>5. 코멘트</h4>
+
+        <p>제작 비하인드는 여기까지입니다! 사실 도오-명오를 만들면서 미역 수인, 조개 수인, 불가사리 수인을 만들어 해산물 시장을 만들고 싶었는데 뇌절 같아서 그만두었습니다. 언젠가 나올 수도(?) 있겠네요. 읽어주셔서 감사합니다.</p>
+
+        <img src="https://i.imgur.com/StcW1fm.png" alt="" style="display:block;width:520px;max-width:100%;height:auto;margin:24px auto;">
+        </div>
+      </details>
     </div>
   </section>
+
 
   <section class="view" id="view-news">
     <div class="page-head">
@@ -909,7 +1346,7 @@ footer a:hover{
           <span class="status-toggle">+</span>
         </summary>
         <div class="status-list">
-          <div class="status-entry"><strong>케이브덕 오리지널:</strong> 재스퍼 <span class="status-sub">(인외정병동 단독)</span></div>
+          <div class="status-entry"><span class="status-complete"><strong>케이브덕 오리지널:</strong> 재스퍼 <span class="status-sub">(인외정병동 단독)</span></span></div>
           <div class="status-entry"><strong>케이브덕 오리지널:</strong> 라스 <span class="status-sub">(모르카디스 파생)</span></div>
           <div class="status-entry"><strong>케이브덕 오리지널:</strong> SCU 신규 캐릭터</div>
         </div>
@@ -922,40 +1359,59 @@ footer a:hover{
         </summary>
         <div class="status-list">
           <div class="status-entry"><strong>엘린:</strong> 권태희</div>
-          <div class="status-entry"><strong>티팟:</strong> 진명오, 린바오, 모르카디스, 천시안</div>
+          <div class="status-entry"><strong>티팟:</strong> 진명오, 린바오, <span class="status-complete">모르카디스</span>, 천시안</div>
         </div>
       </details>
     </div>
   </section>
 
+
   <section class="view" id="view-message">
     <div class="page-head">
-      <div class="eyebrow">OPEN TALK / GUESTBOOK</div>
-      <h2>MESSAGE</h2>
+      <div class="eyebrow">HAPPYMEAL / ORDER HERE</div>
+      <h2>ORDER</h2>
     </div>
 
-    <div class="message-intro">
-      <p>편하게 남겨 주세요</p>
-      <span>캐릭터 이야기 · 잡담 · 질문</span>
+    <div class="order-stage" id="orderStage" data-mood="normal">
+      <div class="order-topline">
+        <span>HAPPYMEAL</span>
+        <span class="store-open">OPEN</span>
+      </div>
+      <div class="order-portrait-area">
+        <div class="order-portrait-img-wrap">
+          <img class="order-portrait-img" src="https://i.imgur.com/43hHK1y.png" alt="주문을 받는 햄밀 일러스트">
+        </div>
+      </div>
+      <div class="order-dialogue" aria-live="polite">
+        <div class="order-speaker">햄밀</div>
+        <p class="order-speech" id="orderSpeech">어서 오세요, 손님! 해피밀입니다. 무엇을 도와드릴까요?</p>
+
+        <section class="order-popup order-menu-inline" id="orderMenuPanel" hidden aria-label="추천 메뉴">
+          <div class="order-popup-head">
+            <span class="order-popup-kicker">HAPPYMEAL / TODAY'S PICK</span>
+            <button class="order-popup-close" type="button" data-close-order aria-label="추천 메뉴 닫기">×</button>
+          </div>
+          <div class="order-menu-card" id="orderMenuCard"></div>
+        </section>
+        <section class="order-popup order-inquiry-panel order-inquiry-inline" id="orderPrivatePanel" hidden aria-label="1:1 문의">
+          <div class="order-popup-head">
+            <span class="order-popup-kicker">HAPPYMEAL / PRIVATE INQUIRY</span>
+            <button class="order-popup-close" type="button" data-close-order aria-label="1:1 문의 창 닫기">×</button>
+          </div>
+          <h3>점장님과 1:1 대화하기</h3>
+          <p>제작자에게 전할 말이 있으신가요? 비공개 채널톡 상담창으로 연결합니다.</p>
+          <button class="order-inquiry-link" id="orderInquiryButton" type="button">1:1 상담창 열기 ↗</button>
+          
+        </section>
+      </div>
     </div>
 
-    <div class="cbox-wrap">
-      <iframe
-        src="https://www3.cbox.ws/box/?boxid=3560877&boxtag=ONZqFL"
-        title="HAPPYMEAL Cbox"
-        width="100%"
-        height="620"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        scrolling="auto"
-        allowtransparency="yes">
-      </iframe>
+    <div class="order-choices" role="group" aria-label="햄밀에게 말 걸기">
+      <button class="order-choice" type="button" data-order-action="recommend">이달의 메뉴 추천해 주세요 <span aria-hidden="true">↗</span></button>
+      <button class="order-choice" type="button" data-order-action="secret">햄스터가! <span aria-hidden="true">↗</span></button>
+      <button class="order-choice" type="button" data-order-action="private">...저 번호 좀. <span aria-hidden="true">↗</span></button>
     </div>
 
-    <div class="message-note">
-      익명 소통창입니다.
-    </div>
   </section>
 
 </main>
@@ -1004,6 +1460,134 @@ document.addEventListener('click',(e)=>{
     aboutToggle.textContent='ABOUT +';
   }
 });
+
+
+
+
+/* 이달의 추천 메뉴: 사진 URL, 소개 문구, 플랫폼 링크는 여기에서 변경합니다. */
+const HAMMEAL_RECOMMENDATIONS = [
+  {
+    name: '치킨공주 구하기',
+    intro: '피자에게 납치된 치킨을 구하러 갑시다. 네, 용사님 당신이요!',
+    image: 'https://cdn.caveduck.io/charim-standard/c91ef6a8-a11e-4202-abf7-86762a53c28e?v=50a899',
+    url: 'https://caveduck.io/character-info/309c473e-2b9b-4a98-8acf-59396fb5f702',
+    linkLabel: '케이브덕에서 만나기 ↗'
+  }
+];
+
+/* 채널톡: 익명 방문객용 비공개 상담. Plugin Key는 클라이언트 설치용 공개 키입니다.
+   Access Secret은 HTML에 넣지 마세요. */
+const HAMMEAL_CHANNEL_PLUGIN_KEY = '964a6354-ac9b-4180-a5e2-10ad878c7a12';
+
+// 채널톡 공식 JavaScript SDK 로더. 별도의 화면 고정 버튼은 표시하지 않습니다.
+(function(){
+  var w=window;
+  if(w.ChannelIO){return;}
+  var ch=function(){ch.c(arguments);};
+  ch.q=[];
+  ch.c=function(args){ch.q.push(args);};
+  w.ChannelIO=ch;
+  function loadChannelIO(){
+    if(w.ChannelIOInitialized){return;}
+    w.ChannelIOInitialized=true;
+    var script=document.createElement('script');
+    script.async=true;
+    script.src='https://cdn.channel.io/plugin/ch-plugin-web.js';
+    var first=document.getElementsByTagName('script')[0];
+    first.parentNode.insertBefore(script,first);
+  }
+  if(document.readyState==='complete'){loadChannelIO();}
+  else{w.addEventListener('DOMContentLoaded',loadChannelIO);w.addEventListener('load',loadChannelIO);}
+})();
+
+ChannelIO('boot', {
+  pluginKey: HAMMEAL_CHANNEL_PLUGIN_KEY,
+  language: 'ko',
+  hideChannelButtonOnBoot: true,
+  hidePopup: true
+});
+
+function hammealOpenPrivateChat(){
+  // 채널톡의 실제 개인 유저챗 화면을 엽니다. (메시지는 자동 전송되지 않습니다.)
+  ChannelIO('openChat');
+}
+
+const orderStage = document.getElementById('orderStage');
+const orderSpeech = document.getElementById('orderSpeech');
+const orderMenuPanel = document.getElementById('orderMenuPanel');
+const orderPrivatePanel = document.getElementById('orderPrivatePanel');
+const orderInquiryButton = document.getElementById('orderInquiryButton');
+let orderRecommendationCount = 0;
+
+// 안내가 대화창에 표시된 뒤 이 버튼을 누르면 비공개 1:1 상담창이 열립니다.
+orderInquiryButton.addEventListener('click', hammealOpenPrivateChat);
+
+function hammealSay(text, mood='normal'){
+  orderSpeech.textContent = text;
+  orderStage.dataset.mood = mood;
+}
+function hideOrderPanels(){
+  orderMenuPanel.hidden = true;
+  orderPrivatePanel.hidden = true;
+}
+function hammealShowMenu(){
+  const list = HAMMEAL_RECOMMENDATIONS;
+  const item = list[orderRecommendationCount % list.length];
+  orderRecommendationCount++;
+  const card=document.getElementById('orderMenuCard');
+  card.replaceChildren();
+  let picture;
+  if(item.image){
+    picture = document.createElement('img');
+    picture.className='order-menu-img';
+    picture.src=item.image;
+    picture.alt=item.name;
+  }else{
+    picture = document.createElement('div');
+    picture.className='order-menu-no-image';
+    picture.textContent='캐릭터 이미지 준비 중';
+  }
+  const info=document.createElement('div');
+  const label=document.createElement('div');
+  label.className='order-popup-kicker';
+  label.textContent='MONTHLY SPECIAL';
+  const name=document.createElement('div');
+  name.className='order-menu-name';
+  name.textContent=item.name;
+  const intro=document.createElement('p');
+  intro.className='order-menu-desc';
+  intro.textContent=item.intro;
+  const link=document.createElement(item.url?'a':'span');
+  link.className='order-menu-link'+(item.url?'':' missing');
+  link.textContent=item.url?(item.linkLabel||'캐릭터 만나러 가기'):'플랫폼 링크 연결 전';
+  if(item.url){link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';}
+  info.append(label,name,intro,link);
+  card.append(picture,info);
+  hideOrderPanels();
+  orderMenuPanel.hidden=false;
+}
+document.querySelectorAll('[data-order-action]').forEach(button=>{
+  button.setAttribute('aria-pressed','false');
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('[data-order-action]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+    hideOrderPanels();
+    const action=button.dataset.orderAction;
+    if(action==='recommend'){
+      hammealSay('저는 햄버거를 팔고 있지만, 치킨과 피자는 어떻습니까?!', 'normal');
+      hammealShowMenu();
+    }else if(action==='secret'){
+      hammealSay('세계를 정복한다!', 'secret');
+    }else if(action==='private'){
+      hammealSay('제 번호요? 사번은 001번입니다!\n...아, 점장님을 찾으시는군요! 잠시만 기다려 주세요. 비공개 상담창으로 연결해 드리겠습니다.', 'shy');
+      orderPrivatePanel.hidden=false;
+    }
+  });
+});
+document.querySelectorAll('[data-close-order]').forEach(button=>{
+  button.addEventListener('click',hideOrderPanels);
+});
+
+
 </script>
 </body>
 </html>
